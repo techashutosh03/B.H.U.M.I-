@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Authority Dashboard - Bhoomi</title>
+    <link rel="stylesheet" href="../../assets/css/citizen.css">
+    <link rel="stylesheet" href="../../assets/css/authority.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span class="logo-text">BHOOMI</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item active">
+                <span class="icon">🏛️</span>
+                <span>Officer Desk</span>
+            </a>
+            <a href="verification.html" class="nav-item">
+                <span class="icon">🔍</span>
+                <span>Document Audit</span>
+            </a>
+            <a href="ekyc.html" class="nav-item">
+                <span class="icon">👤</span>
+                <span>eKYC Biometrics</span>
+            </a>
+            <a href="registry.html" class="nav-item">
+                <span class="icon">📜</span>
+                <span>Mutation & Registry</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../../index.html" class="logout-btn">
+                <span class="icon">🚪</span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <h1>Sub-Registrar Office Queue</h1>
+                <p>Tehsil: Haveli, Pune | Officer Desk #04</p>
+            </div>
+            <div class="user-profile">
+                <div class="avatar" style="background: var(--info-blue);">SRO</div>
+                <div class="user-info">
+                    <span class="name">Dr. V. K. Deshmukh</span>
+                    <span class="role">Sub-Registrar Officer</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="stats-section">
+            <div class="stat-card">
+                <div class="stat-icon yellow">⏳</div>
+                <div class="stat-info">
+                    <h3>14</h3>
+                    <p>Pending Verifications</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon green">✓</div>
+                <div class="stat-info">
+                    <h3>28</h3>
+                    <p>Approved Mutations Today</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon blue">👤</div>
+                <div class="stat-info">
+                    <h3>8</h3>
+                    <p>eKYC Slots Scheduled</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-properties">
+            <h2 class="section-title">Pending Deed Approval Queue</h2>
+            <div class="properties-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mutation ID</th>
+                            <th>ULPIN</th>
+                            <th>Seller / Buyer</th>
+                            <th>AI Verification</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>MUT-2026-8812</strong></td>
+                            <td>BHUMI-2026-MH-984210</td>
+                            <td>Rajesh Sharma → Ananya Verma</td>
+                            <td><span class="status verified">98% Match</span></td>
+                            <td>
+                                <button class="table-btn" onclick="location.href='verification.html'">Inspect</button>
+                                <button class="table-btn secondary" onclick="location.href='registry.html'">Approve</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>MUT-2026-8890</strong></td>
+                            <td>BHUMI-2026-MH-330192</td>
+                            <td>Suresh Patil → Vikramaditya Rao</td>
+                            <td><span class="status pending">eKYC Required</span></td>
+                            <td>
+                                <button class="table-btn" onclick="location.href='ekyc.html'">Process eKYC</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

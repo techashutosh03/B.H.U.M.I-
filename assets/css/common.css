@@ -1,0 +1,53 @@
+/* B.H.U.M.I - Shared Design Tokens & Global Utilities */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --primary-black: #001D39;
+  --secondary-black: #0A4174;
+  --accent-gold: #7BBDE8;
+  --text-white: #BDD8E9;
+  --text-gray: #6EA2B3;
+  --card-bg: #0A4174;
+  --border-color: #49769F;
+  --success-green: #7BBDE8;
+  --warning-yellow: #6EA2B3;
+  --info-blue: #7BBDE8;
+  --error-red: #EF4444;
+  --purple: #49769F;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+  background-color: var(--primary-black);
+  color: var(--text-white);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent-gold);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.badge-success { background: rgba(16, 185, 129, 0.2); color: var(--success-green); }
+.badge-warning { background: rgba(245, 158, 11, 0.2); color: var(--warning-yellow); }
+.badge-info { background: rgba(59, 130, 246, 0.2); color: var(--info-blue); }
+.badge-danger { background: rgba(239, 68, 68, 0.2); color: var(--error-red); }

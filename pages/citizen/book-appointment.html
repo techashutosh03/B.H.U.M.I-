@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - Bhoomi</title>
+    <link rel="stylesheet" href="../../assets/css/citizen.css">
+    <style>
+        .booking-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 800px;
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-gray); }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary-black);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: white;
+        }
+        .slot-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .slot-btn {
+            padding: 0.8rem;
+            background: var(--primary-black);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
+        .slot-btn:hover, .slot-btn.selected {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span class="logo-text">BHOOMI</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="verify-land.html" class="nav-item">
+                <span class="icon">🔍</span>
+                <span>Verify Land</span>
+            </a>
+            <a href="book-appointment.html" class="nav-item active">
+                <span class="icon">📅</span>
+                <span>Book Appointment</span>
+            </a>
+            <a href="download-registry.html" class="nav-item">
+                <span class="icon">📄</span>
+                <span>E-Registry</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../../index.html" class="logout-btn">
+                <span class="icon">🚪</span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <h1>Book Sub-Registrar Slot</h1>
+                <p>Schedule your physical deed registration appointment</p>
+            </div>
+        </header>
+
+        <section class="booking-card">
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label>Sub-Registrar Office</label>
+                    <select><option>SRO Haveli 1 - Pune Sadar</option><option>SRO Mulshi - Paud</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Service Type</label>
+                    <select><option>Deed Registration & Biometric Signoff</option><option>Mutation Claim Submission</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Appointment Date</label>
+                    <input type="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Available Time Slots</label>
+                    <div class="slot-grid">
+                        <div class="slot-btn selected">10:00 AM</div>
+                        <div class="slot-btn">11:30 AM</div>
+                        <div class="slot-btn">02:00 PM</div>
+                        <div class="slot-btn">04:00 PM</div>
+                    </div>
+                </div>
+                <button type="submit" class="action-btn" style="background: var(--accent-gold); color: black; margin-top: 1rem;">Confirm Appointment</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.querySelectorAll('.slot-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Appointment Slot Booked Successfully! Notification sent.');
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validator Node Monitor - Bhoomi HQ</title>
+    <link rel="stylesheet" href="../../assets/css/citizen.css">
+    <link rel="stylesheet" href="../../assets/css/government.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span class="logo-text">BHOOMI</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="icon">🏛️</span>
+                <span>State HQ</span>
+            </a>
+            <a href="monitoring.html" class="nav-item active">
+                <span class="icon">⚡</span>
+                <span>Node Monitor</span>
+            </a>
+            <a href="analytics.html" class="nav-item">
+                <span class="icon">📈</span>
+                <span>Revenue Analytics</span>
+            </a>
+            <a href="disputes.html" class="nav-item">
+                <span class="icon">⚖️</span>
+                <span>Dispute Tribunal</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../../index.html" class="logout-btn">
+                <span class="icon">🚪</span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <h1>Hyperledger Validator Network Monitor</h1>
+                <p>Live node consensus, block production & IPFS cluster status</p>
+            </div>
+        </header>
+
+        <section class="nodes-status-grid">
+            <div class="node-card">
+                <div class="node-card-header">
+                    <span class="node-name">Node-MH-01 (Mumbai SDC)</span>
+                    <span class="status verified">Active</span>
+                </div>
+                <div class="node-stats">
+                    <span>Height: #10484</span>
+                    <span>Latency: 12ms</span>
+                </div>
+            </div>
+
+            <div class="node-card">
+                <div class="node-card-header">
+                    <span class="node-name">Node-MH-02 (Pune SDC)</span>
+                    <span class="status verified">Active</span>
+                </div>
+                <div class="node-stats">
+                    <span>Height: #10484</span>
+                    <span>Latency: 16ms</span>
+                </div>
+            </div>
+
+            <div class="node-card">
+                <div class="node-card-header">
+                    <span class="node-name">Node-MH-03 (Nagpur HQ)</span>
+                    <span class="status verified">Active</span>
+                </div>
+                <div class="node-stats">
+                    <span>Height: #10484</span>
+                    <span>Latency: 22ms</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-properties">
+            <h2 class="section-title">Live Block Ledger Stream</h2>
+            <div class="properties-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Block #</th>
+                            <th>Block Hash</th>
+                            <th>Transactions</th>
+                            <th>Validator Node</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>10484</strong></td>
+                            <td><code>0x8f3c71a9e42b10d5c829e...</code></td>
+                            <td>12 Mutations</td>
+                            <td>Node-MH-01</td>
+                            <td>Just now</td>
+                        </tr>
+                        <tr>
+                            <td><strong>10483</strong></td>
+                            <td><code>0x7e2d60b8d31a09c4b718d...</code></td>
+                            <td>8 Title Verifications</td>
+                            <td>Node-MH-02</td>
+                            <td>2 min ago</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

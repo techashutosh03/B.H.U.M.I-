@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registry & Mutation Execution - Bhoomi Authority</title>
+    <link rel="stylesheet" href="../../assets/css/citizen.css">
+    <link rel="stylesheet" href="../../assets/css/authority.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <span class="logo-text">BHOOMI</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="icon">🏛️</span>
+                <span>Officer Desk</span>
+            </a>
+            <a href="verification.html" class="nav-item">
+                <span class="icon">🔍</span>
+                <span>Document Audit</span>
+            </a>
+            <a href="ekyc.html" class="nav-item">
+                <span class="icon">👤</span>
+                <span>eKYC Biometrics</span>
+            </a>
+            <a href="registry.html" class="nav-item active">
+                <span class="icon">📜</span>
+                <span>Mutation & Registry</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="../../index.html" class="logout-btn">
+                <span class="icon">🚪</span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="top-header">
+            <div class="header-left">
+                <h1>Smart Contract Mutation Execution</h1>
+                <p>Final digital signoff & Hyperledger block commitment</p>
+            </div>
+        </header>
+
+        <section style="background: var(--card-bg); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--accent-gold); max-width: 800px;">
+            <h2 class="section-title">Deed Registration Final Signoff</h2>
+            
+            <div style="margin-bottom: 2rem;">
+                <p><strong>Deed Reference:</strong> MUT-2026-8812</p>
+                <p><strong>Parcel ULPIN:</strong> BHUMI-2026-MH-984210</p>
+                <p><strong>Seller Transferor:</strong> Rajesh Kumar Sharma</p>
+                <p><strong>Buyer Transferee:</strong> Ananya Verma</p>
+                <p><strong>Biometric Status:</strong> Verified ✓</p>
+                <p><strong>Encumbrance Audit:</strong> Passed ✓</p>
+            </div>
+
+            <button class="action-btn" style="background: var(--success-green); color: white; width: 100%; font-size: 1.1rem; padding: 1.2rem;" onclick="alert('Smart Contract Executed! Block Committed to Hyperledger Node #10484.'); window.location.href='dashboard.html';">⚡ Execute Smart Contract & Mint Digital Deed</button>
+        </section>
+    </main>
+</body>
+</html>
