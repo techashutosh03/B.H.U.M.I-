@@ -6,13 +6,13 @@
 }
 
 :root {
-  --primary-black: #001D39;
-  --secondary-black: #0A4174;
-  --accent-gold: #7BBDE8;
-  --text-white: #BDD8E9;
-  --text-gray: #6EA2B3;
-  --card-bg: #0A4174;
-  --border-color: #49769F;
+  --primary-black: #2B0A0D;
+  --secondary-black: #421014;
+  --accent-gold: #FED7B8;
+  --text-white: #FFF0E5;
+  --text-gray: #DCAE91;
+  --card-bg: #59171B;
+  --border-color: rgba(254, 215, 184, 0.25);
 }
 
 body {
