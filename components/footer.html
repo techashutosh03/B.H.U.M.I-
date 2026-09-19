@@ -1,29 +1,276 @@
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <span class="logo-text">BHOOMI</span>
+<!--
+    B.H.U.M.I — Reusable Footer Component
+    Usage: copy-paste at bottom of landing / auth pages.
+    Dashboard pages typically don't use a footer.
+-->
+
+<footer class="bh-footer">
+    <div class="bh-footer-inner">
+
+        <!-- Brand column -->
+        <div class="bh-footer-brand">
+            <div class="bh-footer-logo">
+                <span class="bh-footer-logo-icon">🏛️</span>
+                <div>
+                    <span class="bh-footer-logo-name">B.H.U.M.I</span>
+                    <span class="bh-footer-logo-sub">Digital Land Registry</span>
+                </div>
             </div>
-            <p>Revolutionizing land registry through blockchain technology.</p>
+            <p class="bh-footer-desc">
+                A blockchain-powered digital land registry system ensuring transparency,
+                immutability, and accessibility for every citizen of India.
+            </p>
+            <div class="bh-footer-badges">
+                <span class="bh-footer-badge">🔗 Blockchain Secured</span>
+                <span class="bh-footer-badge">🔒 eKYC Verified</span>
+                <span class="bh-footer-badge">🏛️ GoI Initiative</span>
+            </div>
         </div>
-        <div class="footer-section">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="../../index.html#about">About Us</a></li>
-                <li><a href="../../index.html#features">Features</a></li>
-                <li><a href="../../index.html#services">Services</a></li>
+
+        <!-- Portals column -->
+        <div class="bh-footer-col">
+            <div class="bh-footer-col-title">Portals</div>
+            <ul class="bh-footer-links">
+                <li><a href="../pages/citizen/dashboard.html">Citizen Portal</a></li>
+                <li><a href="../pages/authority/dashboard.html">Authority Portal</a></li>
+                <li><a href="../pages/government/dashboard.html">Government HQ</a></li>
+                <li><a href="../auth/login.html">Login</a></li>
+                <li><a href="../auth/register.html">Register</a></li>
             </ul>
         </div>
-        <div class="footer-section">
-            <h4>Contact</h4>
-            <ul>
-                <li>Email: info@bhoomi.gov.in</li>
-                <li>Phone: 1800-XXX-XXXX</li>
+
+        <!-- Services column -->
+        <div class="bh-footer-col">
+            <div class="bh-footer-col-title">Services</div>
+            <ul class="bh-footer-links">
+                <li><a href="../pages/citizen/verify-land.html">Verify Land</a></li>
+                <li><a href="../pages/citizen/book-appointment.html">Book Appointment</a></li>
+                <li><a href="../pages/citizen/download-registry.html">Download E-Registry</a></li>
+                <li><a href="../pages/authority/ekyc.html">eKYC Processing</a></li>
+                <li><a href="../pages/authority/registry.html">Registry & Mutation</a></li>
             </ul>
         </div>
+
+        <!-- Info column -->
+        <div class="bh-footer-col">
+            <div class="bh-footer-col-title">Information</div>
+            <ul class="bh-footer-links">
+                <li><a href="#">About B.H.U.M.I</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Help & Support</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+
     </div>
-    <div class="footer-bottom">
-        <p>&copy; 2026 Bhoomi. All rights reserved. Government of India</p>
+
+    <!-- Bottom bar -->
+    <div class="bh-footer-bottom">
+        <div class="bh-footer-bottom-inner">
+            <span class="bh-footer-copy">
+                © <span id="bhFooterYear">2026</span> B.H.U.M.I — Government of India.
+                All rights reserved.
+            </span>
+            <div class="bh-footer-bottom-links">
+                <a href="#">Privacy</a>
+                <span class="bh-footer-sep">·</span>
+                <a href="#">Terms</a>
+                <span class="bh-footer-sep">·</span>
+                <a href="#">Accessibility</a>
+            </div>
+            <div class="bh-footer-tech">
+                Built with Blockchain · eKYC · Smart Contracts
+            </div>
+        </div>
     </div>
 </footer>
+
+<!-- ── Footer Styles (self-contained) ── -->
+<style>
+.bh-footer {
+    background: #1A1C2E;
+    border-top: 1px solid #3D4166;
+    margin-top: auto;
+}
+
+.bh-footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+}
+
+/* Brand */
+.bh-footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+}
+
+.bh-footer-logo-icon {
+    font-size: 1.5rem;
+}
+
+.bh-footer-logo-name {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 800;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #9FA5D5 0%, #FED7B8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bh-footer-logo-sub {
+    display: block;
+    font-size: 0.6rem;
+    color: #8189C1;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.bh-footer-desc {
+    font-size: 0.82rem;
+    color: #8189C1;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    max-width: 300px;
+}
+
+.bh-footer-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.bh-footer-badge {
+    padding: 0.3rem 0.65rem;
+    border-radius: 9999px;
+    background: rgba(159, 165, 213, 0.08);
+    border: 1px solid rgba(159, 165, 213, 0.2);
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #9FA5D5;
+    white-space: nowrap;
+}
+
+/* Columns */
+.bh-footer-col-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #F0F2FF;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+}
+
+.bh-footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.bh-footer-links a {
+    font-size: 0.82rem;
+    color: #8189C1;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    display: inline-block;
+}
+
+.bh-footer-links a:hover {
+    color: #B8BFEA;
+}
+
+/* Bottom bar */
+.bh-footer-bottom {
+    border-top: 1px solid #3D4166;
+    background: rgba(13, 14, 26, 0.5);
+}
+
+.bh-footer-bottom-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1.1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.bh-footer-copy {
+    font-size: 0.75rem;
+    color: #6B72A8;
+}
+
+.bh-footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.bh-footer-bottom-links a {
+    color: #6B72A8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.bh-footer-bottom-links a:hover {
+    color: #B8BFEA;
+}
+
+.bh-footer-sep {
+    color: #3D4166;
+}
+
+.bh-footer-tech {
+    font-size: 0.72rem;
+    color: #4A4E7A;
+    letter-spacing: 0.04em;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .bh-footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .bh-footer-brand {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .bh-footer-inner {
+        grid-template-columns: 1fr;
+        padding: 2.5rem 1.25rem 1.5rem;
+        gap: 1.75rem;
+    }
+
+    .bh-footer-bottom-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1.25rem;
+    }
+
+    .bh-footer-tech {
+        display: none;
+    }
+}
+</style>
+
+<script>
+// Auto year
+const yearEl = document.getElementById('bhFooterYear');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+</script>

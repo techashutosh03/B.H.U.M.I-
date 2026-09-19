@@ -3,37 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eKYC Processing - Bhoomi Authority</title>
-    <link rel="stylesheet" href="../../assets/css/citizen.css">
+    <title>eKYC Processing - B.H.U.M.I</title>
     <link rel="stylesheet" href="../../assets/css/authority.css">
 </head>
 <body>
+    <!-- Sidebar (Same as before) -->
     <aside class="sidebar">
         <div class="sidebar-header">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <span class="logo-text">BHOOMI</span>
+                <span class="logo-text">B.H.U.M.I</span>
+            </div>
+            <div class="authority-badge">
+                <span>🏛️ Local Authority</span>
             </div>
         </div>
+        
         <nav class="sidebar-nav">
             <a href="dashboard.html" class="nav-item">
-                <span class="icon">🏛️</span>
-                <span>Officer Desk</span>
+                <span class="icon">📊</span>
+                <span>Dashboard</span>
             </a>
             <a href="verification.html" class="nav-item">
-                <span class="icon">🔍</span>
-                <span>Document Audit</span>
+                <span class="icon">✓</span>
+                <span>Document Verification</span>
             </a>
             <a href="ekyc.html" class="nav-item active">
-                <span class="icon">👤</span>
-                <span>eKYC Biometrics</span>
+                <span class="icon">🆔</span>
+                <span>eKYC Processing</span>
             </a>
             <a href="registry.html" class="nav-item">
+                <span class="icon">📝</span>
+                <span>Registry & Mutation</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">📋</span>
+                <span>Pending Applications</span>
+            </a>
+            <a href="#" class="nav-item">
                 <span class="icon">📜</span>
-                <span>Mutation & Registry</span>
+                <span>Completed Records</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">⚙️</span>
+                <span>Settings</span>
             </a>
         </nav>
+
         <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="user-avatar">RS</div>
+                <div class="user-details">
+                    <strong>Ramesh Sharma</strong>
+                    <span>Registrar, Sadar</span>
+                </div>
+            </div>
             <a href="../../index.html" class="logout-btn">
                 <span class="icon">🚪</span>
                 <span>Logout</span>
@@ -41,32 +65,212 @@
         </div>
     </aside>
 
+    <!-- Main Content -->
     <main class="main-content">
         <header class="top-header">
             <div class="header-left">
-                <h1>Biometric & Aadhaar eKYC Desk</h1>
-                <p>Live facial match & fingerprint verification scanner</p>
+                <h1>eKYC Verification</h1>
+                <p>Verify identity through Aadhaar authentication</p>
             </div>
         </header>
 
-        <section style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-            <div class="biometric-scanner-box">
-                <div class="face-mesh-overlay"></div>
-                <div class="scan-line"></div>
-                <p style="position: absolute; bottom: 20px; color: var(--accent-gold);">Live Webcam Scanner Active</p>
+        <!-- eKYC Process Steps -->
+        <section class="ekyc-steps">
+            <div class="step completed">
+                <div class="step-number">✓</div>
+                <span>Documents Verified</span>
+            </div>
+            <div class="step-line completed"></div>
+            <div class="step active">
+                <div class="step-number">2</div>
+                <span>Aadhaar Authentication</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <span>Biometric Verification</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <span>Final Approval</span>
+            </div>
+        </section>
+
+        <!-- eKYC Interface -->
+        <section class="ekyc-interface">
+            <div class="ekyc-left">
+                <div class="kyc-card">
+                    <h3>Applicant Details</h3>
+                    <div class="applicant-photo">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Crect fill='%239FA5D5' width='150' height='150'/%3E%3Ctext x='50%25' y='50%25' font-size='48' fill='white' text-anchor='middle' dy='.3em'%3ESK%3C/text%3E%3C/svg%3E" alt="Applicant">
+                    </div>
+                    <div class="applicant-info">
+                        <h4>Suresh Kumar Singh</h4>
+                        <p>Application #2024-0234</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Aadhaar:</span>
+                                <span class="value">XXXX-XXXX-3456</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Mobile:</span>
+                                <span class="value">+91 98765 43211</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Email:</span>
+                                <span class="value">suresh.k@example.com</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">DOB:</span>
+                                <span class="value">15-Mar-1985</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="kyc-card">
+                    <h3>Seller Details</h3>
+                    <div class="seller-info">
+                        <h4>Ram Kumar Singh</h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">Aadhaar:</span>
+                                <span class="value">XXXX-XXXX-7890</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">Mobile:</span>
+                                <span class="value">+91 98765 43210</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div style="background: var(--card-bg); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                <h2>Aadhaar Biometric Verification</h2>
-                <div style="margin: 1.5rem 0;">
-                    <p><strong>Applicant Name:</strong> Rajesh Kumar Sharma</p>
-                    <p><strong>Aadhaar Hash:</strong> XXXX-XXXX-9842</p>
-                    <p><strong>Face Match Score:</strong> <span style="color: var(--success-green); font-size: 1.3rem; font-weight: bold;">99.8%</span></p>
-                    <p><strong>Liveness Check:</strong> Passed</p>
+            <div class="ekyc-right">
+                <div class="verification-panel">
+                    <h3>Aadhaar Verification</h3>
+                    
+                    <div class="verification-section">
+                        <h4>Buyer - Suresh Kumar Singh</h4>
+                        <div class="verification-status">
+                            <span class="status-icon pending">⏳</span>
+                            <div>
+                                <strong>Aadhaar OTP Sent</strong>
+                                <p>Waiting for OTP verification</p>
+                            </div>
+                        </div>
+                        <div class="otp-input-section">
+                            <label>Enter OTP received on Aadhaar registered mobile</label>
+                            <div class="otp-inputs">
+                                <input type="text" maxlength="1" class="otp-box">
+                                <input type="text" maxlength="1" class="otp-box">
+                                <input type="text" maxlength="1" class="otp-box">
+                                <input type="text" maxlength="1" class="otp-box">
+                                <input type="text" maxlength="1" class="otp-box">
+                                <input type="text" maxlength="1" class="otp-box">
+                            </div>
+                            <button class="verify-otp-btn">Verify OTP</button>
+                            <button class="resend-otp-btn">Resend OTP</button>
+                        </div>
+                    </div>
+
+                    <div class="verification-section">
+                        <h4>Seller - Ram Kumar Singh</h4>
+                        <div class="verification-status">
+                            <span class="status-icon success">✓</span>
+                            <div>
+                                <strong>Aadhaar Verified</strong>
+                                <p>Verified on 15-Jan-2024, 11:23 AM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="biometric-section">
+                        <h4>Biometric Verification (Optional)</h4>
+                        <p>For enhanced security, you can enable biometric verification</p>
+                        <button class="biometric-btn">
+                            <span>👆</span> Start Fingerprint Scan
+                        </button>
+                    </div>
+
+                    <div class="kyc-actions">
+                        <button class="proceed-btn">Proceed to Registry →</button>
+                        <button class="cancel-btn">Cancel Process</button>
+                    </div>
                 </div>
-                <button class="action-btn" style="background: var(--accent-gold); color: black; width: 100%;" onclick="alert('eKYC Verification Approved!'); window.location.href='registry.html';">Approve Biometric Identity</button>
+            </div>
+        </section>
+
+        <!-- eKYC Statistics -->
+        <section class="kyc-stats">
+            <h2 class="section-title">eKYC Statistics (This Month)</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>156</h3>
+                    <p>Successful Verifications</p>
+                </div>
+                <div class="stat-box">
+                    <h3>12</h3>
+                    <p>Pending Verification</p>
+                </div>
+                <div class="stat-box">
+                    <h3>5</h3>
+                    <p>Failed Attempts</p>
+                </div>
+                <div class="stat-box">
+                    <h3>98.7%</h3>
+                    <p>Success Rate</p>
+                </div>
             </div>
         </section>
     </main>
+
+    <script src="../../assets/js/authority.js"></script>
+    <script>
+        // OTP Input Auto-focus
+        const otpBoxes = document.querySelectorAll('.otp-box');
+        otpBoxes.forEach((box, index) => {
+            box.addEventListener('input', function() {
+                if (this.value.length === 1 && index < otpBoxes.length - 1) {
+                    otpBoxes[index + 1].focus();
+                }
+            });
+            box.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && !this.value && index > 0) {
+                    otpBoxes[index - 1].focus();
+                }
+            });
+        });
+
+        // Verify OTP
+        document.querySelector('.verify-otp-btn').addEventListener('click', function() {
+            const otp = Array.from(otpBoxes).map(box => box.value).join('');
+            if (otp.length === 6) {
+                alert('Verifying OTP...');
+                setTimeout(() => {
+                    alert('✓ Aadhaar Verified Successfully!\n\nProceeding to registry process...');
+                    document.querySelector('.proceed-btn').disabled = false;
+                }, 1500);
+            } else {
+                alert('Please enter complete OTP');
+            }
+        });
+
+        // Resend OTP
+        document.querySelector('.resend-otp-btn').addEventListener('click', function() {
+            alert('OTP resent to registered mobile number');
+        });
+
+        // Proceed to Registry
+        document.querySelector('.proceed-btn').addEventListener('click', function() {
+            window.location.href = 'registry.html';
+        });
+
+        // Biometric Verification
+        document.querySelector('.biometric-btn').addEventListener('click', function() {
+            alert('Initiating fingerprint scanner...\n\nPlease place your finger on the scanner.');
+        });
+    </script>
 </body>
 </html>

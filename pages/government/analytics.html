@@ -1,64 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revenue Analytics - Bhoomi HQ</title>
-    <link rel="stylesheet" href="../../assets/css/citizen.css">
-    <link rel="stylesheet" href="../../assets/css/government.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B.H.U.M.I — Analytics</title>
+    <link rel="stylesheet" href="../../assets/css/government.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-lavender: #9FA5D5;
+            --light-lavender:   #B8BFEA;
+            --soft-lavender:    #C9CEF0;
+            --dark-lavender:    #8189C1;
+            --darker-lavender:  #6B72A8;
+            --accent-peach:     #FED7B8;
+            --light-peach:      #FFE5D0;
+            --soft-peach:       #FFF0E0;
+            --dark-peach:       #F5C99E;
+            --primary-bg:       #0D0E1A;
+            --secondary-bg:     #1A1C2E;
+            --card-bg:          #252841;
+            --hover-bg:         #2F3354;
+            --border-color:     #3D4166;
+            --border-light:     #4A4E7A;
+            --text-white:       #FFFFFF;
+            --text-light:       #F0F2FF;
+            --text-gray:        #B8BFEA;
+            --text-muted:       #8189C1;
+            --text-dark:        #6B72A8;
+            --success-green:    #10B981;
+            --warning-yellow:   #F59E0B;
+            --info-blue:        #3B82F6;
+            --error-red:        #EF4444;
+            --purple:           #8B5CF6;
+            --gradient-primary: linear-gradient(135deg, #9FA5D5 0%, #FED7B8 100%);
+            --gradient-secondary: linear-gradient(135deg, #B8BFEA 0%, #FFE5D0 100%);
+            --gradient-card:    linear-gradient(135deg, rgba(159,165,213,0.1) 0%, rgba(254,215,184,0.05) 100%);
+            --gradient-hover:   linear-gradient(135deg, rgba(159,165,213,0.2) 0%, rgba(254,215,184,0.1) 100%);
+            --gradient-bg:      linear-gradient(135deg, #0D0E1A 0%, #1A1C2E 50%, #252841 100%);
+        }
+    </style>
 </head>
 <body>
-    <aside class="sidebar">
+
+<div class="dashboard-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <span class="logo-text">BHOOMI</span>
+            <div class="sidebar-logo">
+                <span class="logo-icon">🏛️</span>
+                <div>
+                    <span class="logo-text">B.H.U.M.I</span>
+                    <span class="logo-sub">HQ Portal</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">&#9776;</button>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">MK</div>
+            <div class="user-info">
+                <span class="user-name">Mukesh Kumar</span>
+                <span class="user-role">Joint Secretary</span>
+                <span class="sidebar-role-badge gov-badge">GOV HQ</span>
             </div>
         </div>
+
         <nav class="sidebar-nav">
+            <div class="nav-section-label">Overview</div>
             <a href="dashboard.html" class="nav-item">
-                <span class="icon">🏛️</span>
-                <span>State HQ</span>
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Dashboard</span>
             </a>
+
+            <div class="nav-section-label">Surveillance</div>
             <a href="monitoring.html" class="nav-item">
-                <span class="icon">⚡</span>
-                <span>Node Monitor</span>
+                <span class="nav-icon">🗺️</span>
+                <span class="nav-text">Registry Monitoring</span>
             </a>
             <a href="analytics.html" class="nav-item active">
-                <span class="icon">📈</span>
-                <span>Revenue Analytics</span>
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Analytics</span>
             </a>
             <a href="disputes.html" class="nav-item">
-                <span class="icon">⚖️</span>
-                <span>Dispute Tribunal</span>
+                <span class="nav-icon">⚖️</span>
+                <span class="nav-text">Disputes</span>
+            </a>
+
+            <div class="nav-section-label">Account</div>
+            <a href="../../auth/login.html" class="nav-item">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
             </a>
         </nav>
-        <div class="sidebar-footer">
-            <a href="../../index.html" class="logout-btn">
-                <span class="icon">🚪</span>
-                <span>Logout</span>
-            </a>
-        </div>
     </aside>
 
-    <main class="main-content">
-        <header class="top-header">
-            <div class="header-left">
-                <h1>State Stamp Duty & Revenue Analytics</h1>
-                <p>Real-time land valuation & regional tax analytics</p>
-            </div>
-        </header>
+    <!-- ── MAIN ── -->
+    <main class="main-content" id="mainContent">
 
-        <section style="background: var(--card-bg); padding: 2.5rem; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 2rem;">
-            <h2 class="section-title">Monthly Revenue Collection Trend (in ₹ Crores)</h2>
-            <div style="height: 300px; display: flex; align-items: flex-end; gap: 2rem; padding: 1rem; border-bottom: 2px solid var(--accent-gold); justify-content: space-around;">
-                <div style="text-align: center;"><div style="background: var(--accent-gold); height: 180px; width: 45px; border-radius: 6px 6px 0 0;"></div><span style="color: var(--text-gray); margin-top: 0.5rem; display: block;">Apr</span></div>
-                <div style="text-align: center;"><div style="background: var(--accent-gold); height: 210px; width: 45px; border-radius: 6px 6px 0 0;"></div><span style="color: var(--text-gray); margin-top: 0.5rem; display: block;">May</span></div>
-                <div style="text-align: center;"><div style="background: var(--accent-gold); height: 240px; width: 45px; border-radius: 6px 6px 0 0;"></div><span style="color: var(--text-gray); margin-top: 0.5rem; display: block;">Jun</span></div>
-                <div style="text-align: center;"><div style="background: var(--accent-gold); height: 260px; width: 45px; border-radius: 6px 6px 0 0;"></div><span style="color: var(--text-gray); margin-top: 0.5rem; display: block;">Jul</span></div>
-                <div style="text-align: center;"><div style="background: var(--accent-gold); height: 280px; width: 45px; border-radius: 6px 6px 0 0;"></div><span style="color: var(--text-gray); margin-top: 0.5rem; display: block;">Aug</span></div>
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <h1 class="topbar-title">Analytics</h1>
+                <p class="topbar-sub">Deep insights across districts, deed types & timelines</p>
             </div>
-        </section>
+            <div class="topbar-right">
+                <select id="yearFilter"
+                        onchange="updateAnalyticsCharts(this.value)"
+                        style="background:var(--secondary-bg);border:1px solid var(--border-color);
+                               border-radius:8px;color:var(--text-light);padding:0.5rem 0.875rem;
+                               font-size:0.82rem;outline:none;font-family:inherit;">
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                </select>
+                <button class="btn-export" onclick="exportReport()">⬇ Export Report</button>
+            </div>
+        </div>
+
+        <!-- ── STAT SUMMARY ROW ── -->
+        <div class="stat-summary-row">
+
+            <div class="stat-summary-card">
+                <div class="stat-summary-icon lavender">📋</div>
+                <div class="stat-summary-info">
+                    <div class="label">Total Deeds</div>
+                    <div class="value">1,48,302</div>
+                    <div class="delta delta-up">↑ 12.4% YoY</div>
+                </div>
+            </div>
+
+            <div class="stat-summary-card">
+                <div class="stat-summary-icon peach">💰</div>
+                <div class="stat-summary-info">
+                    <div class="label">Stamp Revenue</div>
+                    <div class="value">₹842Cr</div>
+                    <div class="delta delta-up">↑ 9.1% YoY</div>
+                </div>
+            </div>
+
+            <div class="stat-summary-card">
+                <div class="stat-summary-icon green">✅</div>
+                <div class="stat-summary-info">
+                    <div class="label">Digitised Records</div>
+                    <div class="value">97.1%</div>
+                    <div class="delta delta-up">↑ 4.2% YoY</div>
+                </div>
+            </div>
+
+            <div class="stat-summary-card">
+                <div class="stat-summary-icon yellow">⏱️</div>
+                <div class="stat-summary-info">
+                    <div class="label">Avg. Processing</div>
+                    <div class="value">2.3 days</div>
+                    <div class="delta delta-up">↓ 0.8 days faster</div>
+                </div>
+            </div>
+
+            <div class="stat-summary-card">
+                <div class="stat-summary-icon purple">⚖️</div>
+                <div class="stat-summary-info">
+                    <div class="label">Active Disputes</div>
+                    <div class="value">1,204</div>
+                    <div class="delta delta-down">↑ 3.2% — monitor</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── MAIN CHART ROW ── -->
+        <div class="analytics-grid">
+
+            <!-- Monthly Trend Line -->
+            <div class="analytics-chart-card">
+                <div class="chart-title">Monthly Registry Trend — <span id="selectedYear">2024</span></div>
+                <div class="chart-subtitle">Total deed registrations per month</div>
+                <div class="chart-canvas-wrap" style="height:280px;">
+                    <canvas id="monthlyTrendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Deed Type Doughnut -->
+            <div class="analytics-chart-card">
+                <div class="chart-title">Deed Type Distribution</div>
+                <div class="chart-subtitle">Proportional breakdown</div>
+                <div class="chart-canvas-wrap"
+                     style="height:280px;display:flex;align-items:center;justify-content:center;">
+                    <canvas id="deedDoughnutChart" style="max-width:220px;"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── SECOND CHART ROW ── -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+
+            <!-- District-wise Bar -->
+            <div class="analytics-chart-card">
+                <div class="chart-title">Top 8 Districts by Registrations</div>
+                <div class="chart-subtitle">Horizontal comparison</div>
+                <div class="chart-canvas-wrap" style="height:260px;">
+                    <canvas id="districtBarChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Revenue Line -->
+            <div class="analytics-chart-card">
+                <div class="chart-title">Monthly Stamp Duty Revenue (₹ Cr)</div>
+                <div class="chart-subtitle">Collected vs. projected</div>
+                <div class="chart-canvas-wrap" style="height:260px;">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── DEED TYPE BREAKDOWN TABLE ── -->
+        <div class="region-section">
+            <div class="region-section-title">Deed Type — District Breakdown</div>
+            <div class="tehsil-table-wrapper">
+                <table class="tehsil-table">
+                    <thead>
+                        <tr>
+                            <th>District</th>
+                            <th>Sale Deed</th>
+                            <th>Gift Deed</th>
+                            <th>Inheritance</th>
+                            <th>Others</th>
+                            <th>Total</th>
+                            <th>Revenue (₹ Cr)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="deedBreakdownBody">
+                        <!-- Injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </main>
+</div>
+
+<script src="../../assets/js/government.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    initAnalyticsCharts();
+    renderDeedBreakdownTable();
+});
+</script>
 </body>
 </html>

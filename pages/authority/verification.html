@@ -3,37 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Audit - Bhoomi Authority</title>
-    <link rel="stylesheet" href="../../assets/css/citizen.css">
+    <title>Document Verification - B.H.U.M.I</title>
     <link rel="stylesheet" href="../../assets/css/authority.css">
 </head>
 <body>
+    <!-- Sidebar (Same as dashboard) -->
     <aside class="sidebar">
         <div class="sidebar-header">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <span class="logo-text">BHOOMI</span>
+                <span class="logo-text">B.H.U.M.I</span>
+            </div>
+            <div class="authority-badge">
+                <span>🏛️ Local Authority</span>
             </div>
         </div>
+        
         <nav class="sidebar-nav">
             <a href="dashboard.html" class="nav-item">
-                <span class="icon">🏛️</span>
-                <span>Officer Desk</span>
+                <span class="icon">📊</span>
+                <span>Dashboard</span>
             </a>
             <a href="verification.html" class="nav-item active">
-                <span class="icon">🔍</span>
-                <span>Document Audit</span>
+                <span class="icon">✓</span>
+                <span>Document Verification</span>
             </a>
             <a href="ekyc.html" class="nav-item">
-                <span class="icon">👤</span>
-                <span>eKYC Biometrics</span>
+                <span class="icon">🆔</span>
+                <span>eKYC Processing</span>
             </a>
             <a href="registry.html" class="nav-item">
+                <span class="icon">📝</span>
+                <span>Registry & Mutation</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">📋</span>
+                <span>Pending Applications</span>
+            </a>
+            <a href="#" class="nav-item">
                 <span class="icon">📜</span>
-                <span>Mutation & Registry</span>
+                <span>Completed Records</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">⚙️</span>
+                <span>Settings</span>
             </a>
         </nav>
+
         <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="user-avatar">RS</div>
+                <div class="user-details">
+                    <strong>Ramesh Sharma</strong>
+                    <span>Registrar, Sadar</span>
+                </div>
+            </div>
             <a href="../../index.html" class="logout-btn">
                 <span class="icon">🚪</span>
                 <span>Logout</span>
@@ -41,37 +65,261 @@
         </div>
     </aside>
 
+    <!-- Main Content -->
     <main class="main-content">
         <header class="top-header">
             <div class="header-left">
-                <h1>AI Document Audit & Boundary Inspection</h1>
-                <p>Mutation Claim ID: MUT-2026-8812</p>
+                <h1>Document Verification</h1>
+                <p>Verify and approve land documents</p>
             </div>
-            <button class="action-btn" style="background: var(--success-green); color: white;" onclick="alert('Document marked as Verified!'); window.location.href='registry.html';">✓ Pass Document Audit</button>
         </header>
 
-        <section class="doc-split-view">
-            <div class="doc-panel">
-                <div class="doc-panel-header">
-                    <h3>Uploaded Sale Deed Document</h3>
-                    <span class="status verified">PDF Verified</span>
+        <!-- Verification Interface -->
+        <section class="verification-interface">
+            <div class="verification-left">
+                <div class="application-card">
+                    <div class="application-header">
+                        <h3>Application #2024-0234</h3>
+                        <span class="priority-badge urgent">URGENT</span>
+                    </div>
+                    
+                    <div class="application-info">
+                        <div class="info-row">
+                            <span class="label">Applicant Name:</span>
+                            <span class="value">Suresh Kumar Singh</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Father's Name:</span>
+                            <span class="value">Ram Kumar Singh</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Khasra Number:</span>
+                            <span class="value">234/5</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Village:</span>
+                            <span class="value">Rampur, Tehsil Sadar</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Registry Type:</span>
+                            <span class="value">Sale Deed</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Land Area:</span>
+                            <span class="value">2,500 sq. ft</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Submitted On:</span>
+                            <span class="value">15-Jan-2024, 10:30 AM</span>
+                        </div>
+                    </div>
+
+                    <div class="parties-involved">
+                        <h4>Parties Involved</h4>
+                        <div class="party-card">
+                            <strong>Seller:</strong>
+                            <p>Ram Kumar Singh</p>
+                            <p>Contact: +91 98765 43210</p>
+                        </div>
+                        <div class="party-card">
+                            <strong>Buyer:</strong>
+                            <p>Suresh Kumar Singh</p>
+                            <p>Contact: +91 98765 43211</p>
+                        </div>
+                    </div>
                 </div>
-                <p><strong>Deed Title:</strong> Absolute Sale Deed of Agricultural Land</p>
-                <p><strong>Seller:</strong> Rajesh Kumar Sharma</p>
-                <p><strong>Buyer:</strong> Ananya Verma</p>
-                <p style="margin-top: 1rem; color: var(--text-gray);">AI Forgery Scanner: No stamp duty evasion detected. Digital signature matches DigiLocker record.</p>
             </div>
 
-            <div class="doc-panel">
-                <div class="doc-panel-header">
-                    <h3>Spatial GIS Survey Comparison</h3>
-                    <span class="status verified">Boundary Match 99.4%</span>
+            <div class="verification-right">
+                <div class="documents-panel">
+                    <h3>Submitted Documents</h3>
+                    
+                    <div class="document-checklist">
+                        <div class="document-item">
+                            <div class="doc-info">
+                                <span class="doc-icon">📄</span>
+                                <div>
+                                    <strong>Sale Agreement</strong>
+                                    <p>agreement_234_5.pdf (2.3 MB)</p>
+                                </div>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="view-doc-btn">View</button>
+                                <label class="verify-checkbox">
+                                    <input type="checkbox">
+                                    <span>✓</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="document-item">
+                            <div class="doc-info">
+                                <span class="doc-icon">📄</span>
+                                <div>
+                                    <strong>Aadhaar Card (Seller)</strong>
+                                    <p>aadhaar_seller.pdf (1.1 MB)</p>
+                                </div>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="view-doc-btn">View</button>
+                                <label class="verify-checkbox">
+                                    <input type="checkbox">
+                                    <span>✓</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="document-item">
+                            <div class="doc-info">
+                                <span class="doc-icon">📄</span>
+                                <div>
+                                    <strong>Aadhaar Card (Buyer)</strong>
+                                    <p>aadhaar_buyer.pdf (1.2 MB)</p>
+                                </div>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="view-doc-btn">View</button>
+                                <label class="verify-checkbox">
+                                    <input type="checkbox">
+                                    <span>✓</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="document-item">
+                            <div class="doc-info">
+                                <span class="doc-icon">📄</span>
+                                <div>
+                                    <strong>Previous Registry</strong>
+                                    <p>previous_registry.pdf (3.5 MB)</p>
+                                </div>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="view-doc-btn">View</button>
+                                <label class="verify-checkbox">
+                                    <input type="checkbox">
+                                    <span>✓</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="document-item">
+                            <div class="doc-info">
+                                <span class="doc-icon">📄</span>
+                                <div>
+                                    <strong>Encumbrance Certificate</strong>
+                                    <p>encumbrance_cert.pdf (1.8 MB)</p>
+                                </div>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="view-doc-btn">View</button>
+                                <label class="verify-checkbox">
+                                    <input type="checkbox">
+                                    <span>✓</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="document-item">
+                            <div class="doc-info">
+                                <span class="doc-icon">📄</span>
+                                <div>
+                                    <strong>Stamp Duty Receipt</strong>
+                                    <p>stamp_duty.pdf (0.8 MB)</p>
+                                </div>
+                            </div>
+                            <div class="doc-actions">
+                                <button class="view-doc-btn">View</button>
+                                <label class="verify-checkbox">
+                                    <input type="checkbox">
+                                    <span>✓</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="verification-notes">
+                        <h4>Verification Notes</h4>
+                        <textarea placeholder="Add your observations and notes here..."></textarea>
+                    </div>
+
+                    <div class="verification-actions">
+                        <button class="approve-btn">✓ Approve Documents</button>
+                        <button class="reject-btn">✗ Reject & Request Resubmission</button>
+                        <button class="hold-btn">⏸ Put on Hold</button>
+                    </div>
                 </div>
-                <div style="background: #000; height: 280px; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--accent-gold);">
-                    <p style="color: var(--accent-gold);">[ Interactive Drone Boundary & GIS Layer Mesh ]</p>
+            </div>
+        </section>
+
+        <!-- Pending Verifications Queue -->
+        <section class="queue-section">
+            <h2 class="section-title">Pending Verifications Queue</h2>
+            <div class="queue-list">
+                <div class="queue-item">
+                    <div class="queue-priority urgent">URGENT</div>
+                    <div class="queue-details">
+                        <strong>#2024-0234</strong>
+                        <span>Suresh Kumar | Khasra 234/5</span>
+                    </div>
+                    <span class="queue-time">2 hrs left</span>
+                    <button class="queue-btn">Start</button>
+                </div>
+
+                <div class="queue-item">
+                    <div class="queue-priority medium">MEDIUM</div>
+                    <div class="queue-details">
+                        <strong>#2024-0233</strong>
+                        <span>Priya Singh | Khasra 456/7</span>
+                    </div>
+                    <span class="queue-time">5 hrs left</span>
+                    <button class="queue-btn">Start</button>
+                </div>
+
+                <div class="queue-item">
+                    <div class="queue-priority normal">NORMAL</div>
+                    <div class="queue-details">
+                        <strong>#2024-0232</strong>
+                        <span>Amit Verma | Khasra 567/8</span>
+                    </div>
+                    <span class="queue-time">Tomorrow</span>
+                    <button class="queue-btn">Start</button>
                 </div>
             </div>
         </section>
     </main>
+
+    <script src="../../assets/js/authority.js"></script>
+    <script>
+        // View Document
+        document.querySelectorAll('.view-doc-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Opening document viewer...');
+            });
+        });
+
+        // Verification Actions
+        document.querySelector('.approve-btn').addEventListener('click', function() {
+            if (confirm('Are you sure you want to approve all documents?')) {
+                alert('Documents approved successfully!\n\nProceeding to eKYC verification...');
+                window.location.href = 'ekyc.html';
+            }
+        });
+
+        document.querySelector('.reject-btn').addEventListener('click', function() {
+            const notes = document.querySelector('.verification-notes textarea').value;
+            if (!notes) {
+                alert('Please add rejection notes before rejecting');
+                return;
+            }
+            if (confirm('Are you sure you want to reject this application?')) {
+                alert('Application rejected. Applicant will be notified to resubmit documents.');
+            }
+        });
+
+        document.querySelector('.hold-btn').addEventListener('click', function() {
+            alert('Application put on hold. You can resume verification later.');
+        });
+    </script>
 </body>
 </html>

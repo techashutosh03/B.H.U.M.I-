@@ -3,36 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Registry Download - Bhoomi</title>
+    <title>Download E-Registry - B.H.U.M.I</title>
     <link rel="stylesheet" href="../../assets/css/citizen.css">
-    <style>
-        .deed-paper {
-            background: white;
-            color: #0f172a;
-            padding: 3rem;
-            border-radius: 12px;
-            border: 4px double #d4af37;
-            max-width: 800px;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .deed-header {
-            text-align: center;
-            border-bottom: 2px solid #d4af37;
-            padding-bottom: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .deed-header h2 { color: #b45309; }
-    </style>
 </head>
 <body>
+    <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-header">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <span class="logo-text">BHOOMI</span>
+                <span class="logo-text">B.H.U.M.I</span>
             </div>
         </div>
+        
         <nav class="sidebar-nav">
             <a href="dashboard.html" class="nav-item">
                 <span class="icon">📊</span>
@@ -50,7 +33,16 @@
                 <span class="icon">📄</span>
                 <span>E-Registry</span>
             </a>
+            <a href="#" class="nav-item">
+                <span class="icon">📜</span>
+                <span>My Records</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">⚙️</span>
+                <span>Settings</span>
+            </a>
         </nav>
+
         <div class="sidebar-footer">
             <a href="../../index.html" class="logout-btn">
                 <span class="icon">🚪</span>
@@ -59,40 +51,238 @@
         </div>
     </aside>
 
+    <!-- Main Content -->
     <main class="main-content">
         <header class="top-header">
             <div class="header-left">
-                <h1>Digital Land Deed (E-Registry)</h1>
-                <p>Verifiable PDF land ownership certificate with cryptographic seal</p>
+                <h1>Download E-Registry</h1>
+                <p>Access your digital land registry documents</p>
             </div>
-            <button class="action-btn" style="background: var(--accent-gold); color: black;" onclick="alert('Downloading signed PDF certificate...')">📥 Download PDF</button>
+            <div class="header-right">
+                <div class="notification-icon">
+                    <span class="icon">🔔</span>
+                    <span class="badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <div class="avatar">RK</div>
+                    <div class="user-info">
+                        <span class="name">Rajesh Kumar</span>
+                        <span class="role">Citizen</span>
+                    </div>
+                </div>
+            </div>
         </header>
 
-        <section class="deed-paper">
-            <div class="deed-header">
-                <h2>GOVERNMENT OF MAHARASHTRA</h2>
-                <h3>DEPARTMENT OF REVENUE & LAND REGISTRATION</h3>
-                <p style="margin-top: 0.5rem; font-weight: bold; color: #475569;">DIGITAL LAND TITLE CERTIFICATE (PATTA / 7-12)</p>
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-card">
+                <h2>Search Registry Documents</h2>
+                <p>Enter Khasra number to find and download your registry documents</p>
+                
+                <form class="search-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="searchKhasra">Khasra Number</label>
+                            <input type="text" id="searchKhasra" placeholder="e.g., 123/1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="searchDistrict">District</label>
+                            <select id="searchDistrict">
+                                <option value="">Select District</option>
+                                <option value="lucknow">Lucknow</option>
+                                <option value="kanpur">Kanpur</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="search-btn">
+                                🔍 Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
+        </section>
 
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 2rem;" border="1" cellpadding="8">
-                <tr><th>ULPIN Parcel ID</th><td>BHUMI-2026-MH-984210</td></tr>
-                <tr><th>Khasra / Block No</th><td>452/B</td></tr>
-                <tr><th>Registered Owner</th><td>Rajesh Kumar Sharma</td></tr>
-                <tr><th>Tehsil & District</th><td>Haveli, Pune</td></tr>
-                <tr><th>Total Parcel Area</th><td>1.45 Hectares</td></tr>
-                <tr><th>Blockchain Tx Hash</th><td><code>0x8f3c71a9e42b10d5c829e1f407b3a98c761d2b8e90a1f2c3d4e5f6a7b8c9d0e1</code></td></tr>
-            </table>
-
-            <div style="display: flex; justify-content: space-between; align-items: flex-end;">
-                <div>
-                    <p style="font-size: 0.8rem; color: #64748b;">Digitally signed & verified via Aadhaar eSign & Hyperledger Node #10482</p>
+        <!-- Available Documents -->
+        <section class="documents-section">
+            <h2 class="section-title">Available Registry Documents</h2>
+            
+            <div class="documents-grid">
+                <div class="document-card">
+                    <div class="document-header">
+                        <div class="doc-icon">📄</div>
+                        <span class="doc-status verified">Verified</span>
+                    </div>
+                    <div class="document-body">
+                        <h3>Land Registry Certificate</h3>
+                        <div class="doc-details">
+                            <p><strong>Khasra No:</strong> 123/1</p>
+                            <p><strong>Location:</strong> Village Rampur, Tehsil Sadar</p>
+                            <p><strong>Owner:</strong> Rajesh Kumar Singh</p>
+                            <p><strong>Area:</strong> 2,500 sq. ft</p>
+                            <p><strong>Registry Date:</strong> 15-Mar-2020</p>
+                            <p><strong>Document ID:</strong> REG/2020/5678</p>
+                        </div>
+                    </div>
+                    <div class="document-footer">
+                        <button class="download-btn" onclick="downloadPDF('123/1')">
+                            📥 Download PDF
+                        </button>
+                        <button class="view-btn-doc">👁️ Preview</button>
+                        <button class="share-btn">📤 Share</button>
+                    </div>
                 </div>
-                <div style="border: 1px solid #0f172a; padding: 1rem; font-size: 0.7rem; text-align: center;">
-                    [ QR Code Seal ]<br>Scan to Verify
+
+                <div class="document-card">
+                    <div class="document-header">
+                        <div class="doc-icon">📄</div>
+                        <span class="doc-status verified">Verified</span>
+                    </div>
+                    <div class="document-body">
+                        <h3>Land Registry Certificate</h3>
+                        <div class="doc-details">
+                            <p><strong>Khasra No:</strong> 456/2</p>
+                            <p><strong>Location:</strong> Village Shyampur, Tehsil North</p>
+                            <p><strong>Owner:</strong> Priya Sharma</p>
+                            <p><strong>Area:</strong> 1,800 sq. ft</p>
+                            <p><strong>Registry Date:</strong> 22-Jul-2019</p>
+                            <p><strong>Document ID:</strong> REG/2019/3456</p>
+                        </div>
+                    </div>
+                    <div class="document-footer">
+                        <button class="download-btn" onclick="downloadPDF('456/2')">
+                            📥 Download PDF
+                        </button>
+                        <button class="view-btn-doc">👁️ Preview</button>
+                        <button class="share-btn">📤 Share</button>
+                    </div>
+                </div>
+
+                <div class="document-card pending-card">
+                    <div class="document-header">
+                        <div class="doc-icon">⏳</div>
+                        <span class="doc-status pending">Processing</span>
+                    </div>
+                    <div class="document-body">
+                        <h3>Land Registry Certificate</h3>
+                        <div class="doc-details">
+                            <p><strong>Khasra No:</strong> 789/3</p>
+                            <p><strong>Location:</strong> Village Greenfield, Tehsil East</p>
+                            <p><strong>Status:</strong> Registry in process</p>
+                            <p><strong>Expected Date:</strong> 20-Feb-2024</p>
+                        </div>
+                    </div>
+                    <div class="document-footer">
+                        <button class="download-btn" disabled>
+                            📥 Download PDF
+                        </button>
+                        <button class="track-btn">📍 Track Status</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download History -->
+        <section class="history-section">
+            <h2 class="section-title">Download History</h2>
+            <div class="history-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Document ID</th>
+                            <th>Khasra No.</th>
+                            <th>Downloaded On</th>
+                            <th>Format</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>REG/2020/5678</td>
+                            <td>123/1</td>
+                            <td>10-Jan-2024, 03:45 PM</td>
+                            <td><span class="format-badge">PDF</span></td>
+                            <td><button class="redownload-btn">Re-download</button></td>
+                        </tr>
+                        <tr>
+                            <td>REG/2019/3456</td>
+                            <td>456/2</td>
+                            <td>05-Jan-2024, 11:20 AM</td>
+                            <td><span class="format-badge">PDF</span></td>
+                            <td><button class="redownload-btn">Re-download</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Info Cards -->
+        <section class="info-section">
+            <div class="info-cards-grid">
+                <div class="info-card-small">
+                    <div class="info-icon-small">📋</div>
+                    <h4>Valid Documents</h4>
+                    <p>All downloaded documents are digitally signed and legally valid</p>
+                </div>
+                <div class="info-card-small">
+                    <div class="info-icon-small">🔒</div>
+                    <h4>Secure Storage</h4>
+                    <p>Documents are stored securely on blockchain for authenticity</p>
+                </div>
+                <div class="info-card-small">
+                    <div class="info-icon-small">⚡</div>
+                    <h4>Instant Access</h4>
+                    <p>Download your documents anytime, anywhere instantly</p>
                 </div>
             </div>
         </section>
     </main>
+
+    <script src="../../assets/js/citizen.js"></script>
+    <script>
+        // Search Form Handler
+        document.querySelector('.search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const khasra = document.getElementById('searchKhasra').value;
+            alert(`Searching for Khasra No: ${khasra}`);
+        });
+
+        // Download PDF Function
+        function downloadPDF(khasraNo) {
+            alert(`Downloading PDF for Khasra No: ${khasraNo}\n\nFile: Land_Registry_${khasraNo.replace('/', '_')}.pdf`);
+            // Simulate download
+            setTimeout(() => {
+                alert('Download Complete!');
+            }, 1000);
+        }
+
+        // Preview Handler
+        document.querySelectorAll('.view-btn-doc').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Document preview will open in new window');
+            });
+        });
+
+        // Share Handler
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Share options:\n- Email\n- WhatsApp\n- Copy Link');
+            });
+        });
+
+        // Track Status
+        document.querySelectorAll('.track-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Registry Status:\n\nStage 1: ✓ Application Submitted\nStage 2: ✓ Documents Verified\nStage 3: ⏳ In Process\nStage 4: ⏸️ Pending');
+            });
+        });
+
+        // Re-download Handler
+        document.querySelectorAll('.redownload-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Re-downloading document...');
+            });
+        });
+    </script>
 </body>
 </html>

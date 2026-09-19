@@ -6,7 +6,7 @@
 **Response:**
 ```json
 {
-  "ulpin": "BHUMI-2026-MH-984210",
+  "ulpin": "B.H.U.M.I-2026-MH-984210",
   "owner": "Rajesh Kumar Sharma",
   "status": "Verified",
   "hash": "0x8f3c71a9e42b10d5c829e1f407b3a98c761d2b8e90a1f2c3d4e5f6a7b8c9d0e1",

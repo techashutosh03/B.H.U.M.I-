@@ -1,32 +1,237 @@
-<aside class="sidebar">
+<!--
+    B.H.U.M.I — Reusable Sidebar Snippets
+    This file contains THREE sidebar variants as <template> blocks.
+    In production, include the correct variant directly in each dashboard page.
+
+    Variants:
+    1. #citizenSidebar  — Citizen Portal
+    2. #authoritySidebar — Authority Portal (Patwari/Registrar)
+    3. #governmentSidebar — Government HQ Portal
+-->
+
+<!-- ═══════════════════════════════════════════
+     CITIZEN SIDEBAR
+     ═══════════════════════════════════════════ -->
+<template id="citizenSidebarTemplate">
+<aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-        <div class="logo">
-            <div class="logo-icon"></div>
-            <span class="logo-text">BHOOMI</span>
+        <div class="sidebar-logo">
+            <span class="logo-icon">🏛️</span>
+            <div>
+                <span class="logo-text">B.H.U.M.I</span>
+                <span class="logo-sub">Citizen Portal</span>
+            </div>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776;</button>
+    </div>
+
+    <div class="sidebar-user">
+        <div class="user-avatar">RS</div>
+        <div class="user-info">
+            <span class="user-name">Ramesh Sharma</span>
+            <span class="user-role">Citizen</span>
         </div>
     </div>
+
     <nav class="sidebar-nav">
-        <a href="dashboard.html" class="nav-item active">
-            <span class="icon">📊</span>
-            <span>Dashboard</span>
+        <div class="nav-section-label">My Account</div>
+        <a href="/pages/citizen/dashboard.html" class="nav-item">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-text">Dashboard</span>
         </a>
-        <a href="verify-land.html" class="nav-item">
-            <span class="icon">🔍</span>
-            <span>Verify Land</span>
+
+        <div class="nav-section-label">Land Services</div>
+        <a href="/pages/citizen/verify-land.html" class="nav-item">
+            <span class="nav-icon">🔍</span>
+            <span class="nav-text">Verify Land</span>
         </a>
-        <a href="book-appointment.html" class="nav-item">
-            <span class="icon">📅</span>
-            <span>Book Appointment</span>
+        <a href="/pages/citizen/book-appointment.html" class="nav-item">
+            <span class="nav-icon">📅</span>
+            <span class="nav-text">Book Appointment</span>
         </a>
-        <a href="download-registry.html" class="nav-item">
-            <span class="icon">📄</span>
-            <span>E-Registry</span>
+        <a href="/pages/citizen/download-registry.html" class="nav-item">
+            <span class="nav-icon">📥</span>
+            <span class="nav-text">Download E-Registry</span>
+        </a>
+
+        <div class="nav-section-label">Account</div>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">Profile</span>
+        </a>
+        <a href="/auth/login.html" class="nav-item">
+            <span class="nav-icon">🚪</span>
+            <span class="nav-text">Logout</span>
         </a>
     </nav>
-    <div class="sidebar-footer">
-        <a href="../../index.html" class="logout-btn">
-            <span class="icon">🚪</span>
-            <span>Logout</span>
-        </a>
-    </div>
 </aside>
+</template>
+
+
+<!-- ═══════════════════════════════════════════
+     AUTHORITY SIDEBAR
+     ═══════════════════════════════════════════ -->
+<template id="authoritySidebarTemplate">
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">
+            <span class="logo-icon">🏛️</span>
+            <div>
+                <span class="logo-text">B.H.U.M.I</span>
+                <span class="logo-sub">Authority Portal</span>
+            </div>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776;</button>
+    </div>
+
+    <div class="sidebar-user">
+        <div class="user-avatar">SP</div>
+        <div class="user-info">
+            <span class="user-name">Suresh Patwari</span>
+            <span class="user-role">Patwari · Lucknow</span>
+            <span class="sidebar-role-badge"
+                  style="background:rgba(254,215,184,0.12);border:1px solid rgba(254,215,184,0.25);
+                         color:#FED7B8;padding:0.25rem 0.6rem;border-radius:9999px;
+                         font-size:0.65rem;font-weight:700;text-transform:uppercase;
+                         letter-spacing:0.08em;display:inline-block;margin-top:0.3rem;">
+                AUTHORITY
+            </span>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <div class="nav-section-label">Overview</div>
+        <a href="/pages/authority/dashboard.html" class="nav-item">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+        <div class="nav-section-label">Operations</div>
+        <a href="/pages/authority/verification.html" class="nav-item">
+            <span class="nav-icon">📋</span>
+            <span class="nav-text">Document Verification</span>
+        </a>
+        <a href="/pages/authority/ekyc.html" class="nav-item">
+            <span class="nav-icon">🪪</span>
+            <span class="nav-text">eKYC Processing</span>
+        </a>
+        <a href="/pages/authority/registry.html" class="nav-item">
+            <span class="nav-icon">📝</span>
+            <span class="nav-text">Registry & Mutation</span>
+        </a>
+
+        <div class="nav-section-label">Account</div>
+        <a href="#" class="nav-item">
+            <span class="nav-icon">👤</span>
+            <span class="nav-text">Profile</span>
+        </a>
+        <a href="/auth/login.html" class="nav-item">
+            <span class="nav-icon">🚪</span>
+            <span class="nav-text">Logout</span>
+        </a>
+    </nav>
+</aside>
+</template>
+
+
+<!-- ═══════════════════════════════════════════
+     GOVERNMENT HQ SIDEBAR
+     ═══════════════════════════════════════════ -->
+<template id="governmentSidebarTemplate">
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">
+            <span class="logo-icon">🏛️</span>
+            <div>
+                <span class="logo-text">B.H.U.M.I</span>
+                <span class="logo-sub">HQ Portal</span>
+            </div>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle">&#9776;</button>
+    </div>
+
+    <div class="sidebar-user">
+        <div class="user-avatar">MK</div>
+        <div class="user-info">
+            <span class="user-name">Mukesh Kumar</span>
+            <span class="user-role">Joint Secretary</span>
+            <span class="sidebar-role-badge gov-badge">GOV HQ</span>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+        <div class="nav-section-label">Overview</div>
+        <a href="/pages/government/dashboard.html" class="nav-item">
+            <span class="nav-icon">📊</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+        <div class="nav-section-label">Surveillance</div>
+        <a href="/pages/government/monitoring.html" class="nav-item">
+            <span class="nav-icon">🗺️</span>
+            <span class="nav-text">Registry Monitoring</span>
+        </a>
+        <a href="/pages/government/analytics.html" class="nav-item">
+            <span class="nav-icon">📈</span>
+            <span class="nav-text">Analytics</span>
+        </a>
+        <a href="/pages/government/disputes.html" class="nav-item">
+            <span class="nav-icon">⚖️</span>
+            <span class="nav-text">Disputes</span>
+        </a>
+
+        <div class="nav-section-label">Account</div>
+        <a href="/auth/login.html" class="nav-item">
+            <span class="nav-icon">🚪</span>
+            <span class="nav-text">Logout</span>
+        </a>
+    </nav>
+</aside>
+</template>
+
+
+<!--
+    ── HOW TO USE ──────────────────────────────────────────────
+    Option A (JS injection — recommended):
+    ────────────────────────────────────────────────────────────
+
+    In your dashboard HTML, place:
+        <div id="sidebarMount"></div>
+
+    In your JS:
+        const template = document.getElementById('citizenSidebarTemplate');
+        const clone    = template.content.cloneNode(true);
+        document.getElementById('sidebarMount').appendChild(clone);
+
+    Option B (Direct copy):
+    ────────────────────────────────────────────────────────────
+    Copy the <aside> block for the relevant portal directly
+    into each dashboard HTML page. All dashboard pages in this
+    project already have the sidebar inline — this file serves
+    as the single source of truth / reference.
+    ────────────────────────────────────────────────────────────
+-->
+
+<style>
+/* Sidebar role badge for authority */
+.sidebar-role-badge {
+    display: inline-block;
+    margin-top: 0.3rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Gov badge defined in government.css — duplicated here
+   for standalone use of this component: */
+.sidebar-role-badge.gov-badge {
+    background: linear-gradient(135deg,
+        rgba(159, 165, 213, 0.2) 0%,
+        rgba(254, 215, 184, 0.1) 100%);
+    border: 1px solid #9FA5D5;
+    color: #9FA5D5;
+}
+</style>

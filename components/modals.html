@@ -1,7 +1,867 @@
-<div id="commonModal" class="modal-backdrop" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 9999; align-items: center; justify-content: center;">
-    <div class="modal-box" style="background: var(--card-bg, #1f1f1f); border: 1px solid var(--accent-gold, #d4af37); border-radius: 12px; padding: 2rem; max-width: 500px; width: 90%; color: #fff;">
-        <h3 id="modalTitle" style="margin-bottom: 1rem; color: var(--accent-gold, #d4af37);">Notification</h3>
-        <p id="modalBody" style="color: #a0a0a0; margin-bottom: 1.5rem;">Modal content goes here.</p>
-        <button onclick="document.getElementById('commonModal').style.display='none'" style="padding: 0.6rem 1.5rem; background: var(--accent-gold, #d4af37); border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Close</button>
+<!--
+    B.H.U.M.I — Shared Modal Components
+    Contains reusable modal overlays used across all portals.
+
+    Modals included:
+    1. #confirmModal       — Generic confirm/cancel dialog
+    2. #rejectModal        — Document rejection with reason
+    3. #blockchainModal    — Blockchain transaction details
+    4. #otpModal           — OTP input overlay
+    5. #successModal       — Success confirmation
+    6. #appointmentModal   — Appointment details viewer
+-->
+
+<!-- ══════════════════════════════════════════
+     1. CONFIRM MODAL
+     ══════════════════════════════════════════ -->
+<div class="modal-overlay" id="confirmModal" role="dialog" aria-modal="true"
+     aria-labelledby="confirmModalTitle">
+    <div class="modal modal-sm animate-scale-in">
+        <div class="modal-header">
+            <span class="modal-title" id="confirmModalTitle">Confirm Action</span>
+            <button class="modal-close" onclick="closeModal('confirmModal')">✕</button>
+        </div>
+
+        <div class="modal-body">
+            <div style="text-align:center; margin-bottom: 1.25rem;">
+                <div id="confirmModalIcon"
+                     style="font-size:2.5rem; margin-bottom:0.75rem;">⚠️</div>
+                <p id="confirmModalMessage"
+                   style="font-size:0.9rem; color:#B8BFEA; line-height:1.6;">
+                    Are you sure you want to proceed?
+                    This action cannot be undone.
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-ghost btn-sm"
+                    onclick="closeModal('confirmModal')">
+                Cancel
+            </button>
+            <button class="btn btn-danger btn-sm"
+                    id="confirmModalOkBtn"
+                    onclick="handleConfirmOk()">
+                Confirm
+            </button>
+        </div>
     </div>
 </div>
+
+
+<!-- ══════════════════════════════════════════
+     2. REJECT MODAL (Document rejection)
+     ══════════════════════════════════════════ -->
+<div class="modal-overlay" id="rejectModal" role="dialog" aria-modal="true"
+     aria-labelledby="rejectModalTitle">
+    <div class="modal modal-sm animate-scale-in">
+        <div class="modal-header">
+            <span class="modal-title" id="rejectModalTitle">Reject Document</span>
+            <button class="modal-close" onclick="closeModal('rejectModal')">✕</button>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="alert alert-danger" style="margin-bottom:1.25rem;">
+                <span class="alert-icon">⚠️</span>
+                <div class="alert-content">
+                    <div class="alert-title">This action will notify the applicant.</div>
+                    Please provide a clear rejection reason below.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label required" for="rejectReason">
+                    Rejection Reason
+                </label>
+                <select class="form-control" id="rejectReasonSelect"
+                        onchange="syncRejectReason(this.value)">
+                    <option value="">Select a reason…</option>
+                    <option value="Incomplete documents submitted">Incomplete documents submitted</option>
+                    <option value="Aadhaar verification failed">Aadhaar verification failed</option>
+                    <option value="Mismatched land records">Mismatched land records</option>
+                    <option value="Encumbrance certificate missing">Encumbrance certificate missing</option>
+                    <option value="Forged document suspected">Forged document suspected</option>
+                    <option value="Stamp duty underpaid">Stamp duty underpaid</option>
+                    <option value="Other">Other (specify below)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="rejectReasonText">
+                    Additional Comments
+                </label>
+                <textarea class="form-control" id="rejectReasonText"
+                          rows="3"
+                          placeholder="Provide specific details for the applicant…"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="check-group">
+                    <input type="checkbox" id="rejectNotifyCheck" checked />
+                    <span class="check-label">
+                        Send rejection notice to applicant via SMS & Email
+                    </span>
+                </label>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-ghost btn-sm"
+                    onclick="closeModal('rejectModal')">
+                Cancel
+            </button>
+            <button class="btn btn-danger btn-sm"
+                    onclick="submitRejectModal()">
+                ✕ Reject Document
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     3. BLOCKCHAIN TRANSACTION MODAL
+     ══════════════════════════════════════════ -->
+<div class="modal-overlay" id="blockchainModal" role="dialog" aria-modal="true"
+     aria-labelledby="blockchainModalTitle">
+    <div class="modal animate-scale-in">
+        <div class="modal-header">
+            <span class="modal-title" id="blockchainModalTitle">
+                🔗 Blockchain Record
+            </span>
+            <button class="modal-close" onclick="closeModal('blockchainModal')">✕</button>
+        </div>
+
+        <div class="modal-body">
+
+            <!-- Status banner -->
+            <div class="alert alert-success" style="margin-bottom:1.5rem;">
+                <span class="alert-icon">✅</span>
+                <div class="alert-content">
+                    <div class="alert-title">Transaction Confirmed</div>
+                    This registry entry has been permanently recorded on the blockchain.
+                </div>
+            </div>
+
+            <!-- Transaction details grid -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.875rem;
+                        margin-bottom:1.25rem;">
+
+                <div style="background:#1A1C2E; border:1px solid #3D4166;
+                            border-radius:10px; padding:0.875rem 1rem;">
+                    <div style="font-size:0.7rem;font-weight:700;color:#8189C1;
+                                text-transform:uppercase;letter-spacing:0.07em;
+                                margin-bottom:0.35rem;">Registry ID</div>
+                    <div id="bcRegId"
+                         style="font-size:0.9rem;font-weight:700;color:#F0F2FF;
+                                font-family:monospace;">REG-2024-48291</div>
+                </div>
+
+                <div style="background:#1A1C2E; border:1px solid #3D4166;
+                            border-radius:10px; padding:0.875rem 1rem;">
+                    <div style="font-size:0.7rem;font-weight:700;color:#8189C1;
+                                text-transform:uppercase;letter-spacing:0.07em;
+                                margin-bottom:0.35rem;">Block Number</div>
+                    <div id="bcBlockNo"
+                         style="font-size:0.9rem;font-weight:700;color:#F0F2FF;">
+                        #18,492,048
+                    </div>
+                </div>
+
+                <div style="background:#1A1C2E; border:1px solid #3D4166;
+                            border-radius:10px; padding:0.875rem 1rem;">
+                    <div style="font-size:0.7rem;font-weight:700;color:#8189C1;
+                                text-transform:uppercase;letter-spacing:0.07em;
+                                margin-bottom:0.35rem;">Timestamp</div>
+                    <div id="bcTimestamp"
+                         style="font-size:0.85rem;font-weight:600;color:#F0F2FF;">
+                        12 Nov 2024, 14:32:09 IST
+                    </div>
+                </div>
+
+                <div style="background:#1A1C2E; border:1px solid #3D4166;
+                            border-radius:10px; padding:0.875rem 1rem;">
+                    <div style="font-size:0.7rem;font-weight:700;color:#8189C1;
+                                text-transform:uppercase;letter-spacing:0.07em;
+                                margin-bottom:0.35rem;">Confirmations</div>
+                    <div id="bcConfirmations"
+                         style="font-size:0.9rem;font-weight:700;
+                                color:#10B981;">
+                        24 / 24 ✓
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Transaction hash -->
+            <div style="margin-bottom:0.875rem;">
+                <div style="font-size:0.72rem;font-weight:700;color:#8189C1;
+                            text-transform:uppercase;letter-spacing:0.07em;
+                            margin-bottom:0.5rem;">Transaction Hash</div>
+                <div class="blockchain-record">
+                    <span class="chain-icon">🔗</span>
+                    <span class="chain-hash" id="bcTxHash">
+                        0xabc123…loading
+                    </span>
+                    <button class="chain-copy"
+                            onclick="copyHash('bcTxHash')">Copy</button>
+                </div>
+            </div>
+
+            <!-- Smart contract hash -->
+            <div>
+                <div style="font-size:0.72rem;font-weight:700;color:#8189C1;
+                            text-transform:uppercase;letter-spacing:0.07em;
+                            margin-bottom:0.5rem;">Smart Contract Address</div>
+                <div class="blockchain-record">
+                    <span class="chain-icon">📄</span>
+                    <span class="chain-hash" id="bcContractAddr">
+                        0xB_H_U_M_I_Registry_Contract_v2_Mainnet
+                    </span>
+                    <button class="chain-copy"
+                            onclick="copyHash('bcContractAddr')">Copy</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-ghost btn-sm"
+                    onclick="closeModal('blockchainModal')">Close</button>
+            <button class="btn btn-secondary btn-sm"
+                    onclick="downloadBlockchainReceipt()">
+                ⬇ Download Receipt
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     4. OTP MODAL
+     ══════════════════════════════════════════ -->
+<div class="modal-overlay" id="otpModal" role="dialog" aria-modal="true"
+     aria-labelledby="otpModalTitle">
+    <div class="modal modal-sm animate-scale-in">
+        <div class="modal-header">
+            <span class="modal-title" id="otpModalTitle">🔐 Verify OTP</span>
+            <button class="modal-close" onclick="closeModal('otpModal')">✕</button>
+        </div>
+
+        <div class="modal-body">
+
+            <div style="text-align:center; margin-bottom:1.5rem;">
+                <div style="font-size:2.5rem; margin-bottom:0.6rem;">📱</div>
+                <p style="font-size:0.85rem; color:#B8BFEA; line-height:1.6;">
+                    A 6-digit OTP has been sent to the mobile number
+                    linked with your Aadhaar.
+                    <br/>
+                    <span style="color:#8189C1; font-size:0.78rem;">
+                        OTP valid for <span id="otpTimerDisplay">30</span> seconds.
+                    </span>
+                </p>
+            </div>
+
+            <!-- OTP Boxes -->
+            <div id="otpBoxes"
+                 style="display:flex; gap:0.6rem; justify-content:center;
+                        margin-bottom:1.5rem;">
+                <input type="text" maxlength="1" class="otp-box"
+                       oninput="otpBoxMove(this, 0)" onkeydown="otpBoxBack(event, 0)" />
+                <input type="text" maxlength="1" class="otp-box"
+                       oninput="otpBoxMove(this, 1)" onkeydown="otpBoxBack(event, 1)" />
+                <input type="text" maxlength="1" class="otp-box"
+                       oninput="otpBoxMove(this, 2)" onkeydown="otpBoxBack(event, 2)" />
+                <input type="text" maxlength="1" class="otp-box"
+                       oninput="otpBoxMove(this, 3)" onkeydown="otpBoxBack(event, 3)" />
+                <input type="text" maxlength="1" class="otp-box"
+                       oninput="otpBoxMove(this, 4)" onkeydown="otpBoxBack(event, 4)" />
+                <input type="text" maxlength="1" class="otp-box"
+                       oninput="otpBoxMove(this, 5)" onkeydown="otpBoxBack(event, 5)" />
+            </div>
+
+            <div style="text-align:center;">
+                <button id="otpResendBtn"
+                        onclick="resendOTP()"
+                        style="background:none;border:none;color:#8189C1;
+                               font-size:0.8rem;cursor:pointer;font-family:inherit;
+                               text-decoration:underline;"
+                        disabled>
+                    Resend OTP
+                </button>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-ghost btn-sm"
+                    onclick="closeModal('otpModal')">Cancel</button>
+            <button class="btn btn-primary btn-sm"
+                    onclick="submitOTPModal()">Verify OTP</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     5. SUCCESS MODAL
+     ══════════════════════════════════════════ -->
+<div class="modal-overlay" id="successModal" role="dialog" aria-modal="true"
+     aria-labelledby="successModalTitle">
+    <div class="modal modal-sm animate-scale-in">
+        <div class="modal-header" style="border-bottom:none; padding-bottom:0;">
+            <span></span>
+            <button class="modal-close" onclick="closeModal('successModal')">✕</button>
+        </div>
+
+        <div class="modal-body" style="text-align:center; padding-top:0;">
+
+            <!-- Animated checkmark -->
+            <div class="success-check-wrap">
+                <svg class="success-checkmark" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-tick" fill="none"
+                          d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+
+            <h2 id="successModalTitle"
+                style="font-size:1.3rem;font-weight:800;color:#F0F2FF;
+                       font-family:'Georgia',serif; margin-bottom:0.5rem;">
+                Success!
+            </h2>
+            <p id="successModalMessage"
+               style="font-size:0.875rem; color:#8189C1; line-height:1.6;
+                      max-width:280px; margin:0 auto 1.5rem;">
+                Your action has been completed successfully.
+            </p>
+
+            <div id="successModalDetails"
+                 style="background:#1A1C2E;border:1px solid #3D4166;
+                        border-radius:10px; padding:1rem; margin-bottom:1.5rem;
+                        text-align:left; font-size:0.82rem; display:none;">
+                <!-- Injected by JS -->
+            </div>
+
+        </div>
+
+        <div class="modal-footer" style="justify-content:center; border-top:none;">
+            <button class="btn btn-primary"
+                    id="successModalBtn"
+                    onclick="closeModal('successModal')">
+                Done
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     6. APPOINTMENT DETAIL MODAL
+     ══════════════════════════════════════════ -->
+<div class="modal-overlay" id="appointmentModal" role="dialog" aria-modal="true"
+     aria-labelledby="appointmentModalTitle">
+    <div class="modal animate-scale-in">
+        <div class="modal-header">
+            <span class="modal-title" id="appointmentModalTitle">
+                📅 Appointment Details
+            </span>
+            <button class="modal-close"
+                    onclick="closeModal('appointmentModal')">✕</button>
+        </div>
+
+        <div class="modal-body" id="appointmentModalBody">
+            <!-- Injected by JS -->
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-ghost btn-sm"
+                    onclick="closeModal('appointmentModal')">Close</button>
+            <button class="btn btn-danger btn-sm"
+                    id="appointmentCancelBtn"
+                    onclick="cancelAppointmentFromModal()">
+                Cancel Appointment
+            </button>
+            <button class="btn btn-secondary btn-sm"
+                    onclick="rescheduleAppointment()">
+                Reschedule
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     MODAL STYLES & SCRIPTS
+     ══════════════════════════════════════════ -->
+<style>
+/* OTP Boxes */
+.otp-box {
+    width: 46px;
+    height: 54px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #F0F2FF;
+    background: #1A1C2E;
+    border: 2px solid #3D4166;
+    border-radius: 10px;
+    outline: none;
+    caret-color: #9FA5D5;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Courier New', monospace;
+}
+
+.otp-box:focus {
+    border-color: #9FA5D5;
+    box-shadow: 0 0 0 3px rgba(159, 165, 213, 0.15);
+}
+
+.otp-box.filled {
+    border-color: #9FA5D5;
+    background: rgba(159, 165, 213, 0.08);
+}
+
+/* Success checkmark animation */
+.success-check-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto 1.5rem;
+}
+
+.success-checkmark {
+    width: 72px;
+    height: 72px;
+}
+
+.checkmark-circle {
+    stroke: #10B981;
+    stroke-width: 2;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: strokeCircle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark-tick {
+    stroke: #10B981;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: strokeTick 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+}
+
+@keyframes strokeCircle {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes strokeTick {
+    to { stroke-dashoffset: 0; }
+}
+
+/* Blockchain record (defined in common.css — duplicated here for safety) */
+.blockchain-record {
+    background: #1A1C2E;
+    border: 1px solid #3D4166;
+    border-radius: 10px;
+    padding: 0.875rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #B8BFEA;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.chain-hash {
+    flex: 1;
+    color: #9FA5D5;
+    font-size: 0.7rem;
+    word-break: break-all;
+}
+
+.chain-copy {
+    flex-shrink: 0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    background: #2F3354;
+    border: 1px solid #3D4166;
+    color: #8189C1;
+    font-size: 0.68rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+}
+
+.chain-copy:hover {
+    color: #F0F2FF;
+    border-color: #4A4E7A;
+}
+</style>
+
+<script>
+/* ── Modal open/close ─────────────────────────────── */
+function openModal(id) {
+    const overlay = document.getElementById(id);
+    if (overlay) {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeModal(id) {
+    const overlay = document.getElementById(id);
+    if (overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close on backdrop click
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => {
+        if (e.target === overlay) closeModal(overlay.id);
+    });
+});
+
+// Close on Escape
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.active').forEach(m => {
+            closeModal(m.id);
+        });
+    }
+});
+
+
+/* ── Confirm modal ────────────────────────────────── */
+let _confirmCallback = null;
+
+function showConfirm(message, onOk, options = {}) {
+    document.getElementById('confirmModalMessage').textContent =
+        message || 'Are you sure you want to proceed?';
+    document.getElementById('confirmModalIcon').textContent =
+        options.icon || '⚠️';
+    document.getElementById('confirmModalTitle').textContent =
+        options.title || 'Confirm Action';
+
+    const okBtn = document.getElementById('confirmModalOkBtn');
+    okBtn.textContent = options.okLabel || 'Confirm';
+    okBtn.className   = `btn btn-sm ${options.danger ? 'btn-danger' : 'btn-primary'}`;
+
+    _confirmCallback = onOk;
+    openModal('confirmModal');
+}
+
+function handleConfirmOk() {
+    closeModal('confirmModal');
+    if (typeof _confirmCallback === 'function') {
+        _confirmCallback();
+        _confirmCallback = null;
+    }
+}
+
+
+/* ── Reject modal ─────────────────────────────────── */
+function syncRejectReason(value) {
+    if (value && value !== 'Other') {
+        document.getElementById('rejectReasonText').value = value;
+    } else if (value === 'Other') {
+        document.getElementById('rejectReasonText').value = '';
+        document.getElementById('rejectReasonText').focus();
+    }
+}
+
+function submitRejectModal() {
+    const selectVal = document.getElementById('rejectReasonSelect').value;
+    const textVal   = document.getElementById('rejectReasonText').value.trim();
+    const reason    = textVal || selectVal;
+
+    if (!reason) {
+        alert('Please provide a rejection reason.');
+        return;
+    }
+
+    // Call authority.js rejectDocument if available
+    const targetId = document.getElementById('rejectModal').dataset.targetId;
+    if (typeof rejectDocument === 'function' && targetId) {
+        rejectDocument(targetId, reason);
+    }
+
+    closeModal('rejectModal');
+    document.getElementById('rejectReasonSelect').value = '';
+    document.getElementById('rejectReasonText').value   = '';
+}
+
+
+/* ── Blockchain modal ─────────────────────────────── */
+function showBlockchainModal(regId, txHash, blockNo, timestamp) {
+    const set = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+    };
+    set('bcRegId',       regId       || 'REG-2024-00000');
+    set('bcBlockNo',     blockNo     || '#18,000,000');
+    set('bcTimestamp',   timestamp   || new Date().toLocaleString('en-IN'));
+    set('bcTxHash',      txHash      || '0x' + 'a'.repeat(64));
+    openModal('blockchainModal');
+}
+
+function copyHash(elId) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    navigator.clipboard.writeText(el.textContent.trim())
+        .then(() => {
+            el.nextElementSibling.textContent = 'Copied!';
+            setTimeout(() => {
+                el.nextElementSibling.textContent = 'Copy';
+            }, 2000);
+        });
+}
+
+function downloadBlockchainReceipt() {
+    const regId = document.getElementById('bcRegId')?.textContent || 'REG';
+    const tx    = document.getElementById('bcTxHash')?.textContent || '';
+    const ts    = document.getElementById('bcTimestamp')?.textContent || '';
+    const content = `B.H.U.M.I — Blockchain Receipt\n${'='.repeat(40)}\nRegistry ID : ${regId}\nTx Hash     : ${tx}\nTimestamp   : ${ts}\nNetwork     : B.H.U.M.I Mainnet\nConfirmations: 24/24\n${'='.repeat(40)}\nThis is a system-generated receipt.`;
+    const blob = new Blob([content], { type:'text/plain' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = `blockchain_receipt_${regId}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+}
+
+
+/* ── OTP modal ────────────────────────────────────── */
+const OTP_BOXES = () =>
+    document.querySelectorAll('#otpBoxes .otp-box');
+
+function otpBoxMove(input, index) {
+    input.value = input.value.replace(/\D/g, '');
+    if (input.value) {
+        input.classList.add('filled');
+        const boxes = OTP_BOXES();
+        if (index < boxes.length - 1) boxes[index + 1].focus();
+    } else {
+        input.classList.remove('filled');
+    }
+}
+
+function otpBoxBack(event, index) {
+    if (event.key === 'Backspace') {
+        const boxes = OTP_BOXES();
+        if (!boxes[index].value && index > 0) {
+            boxes[index - 1].focus();
+            boxes[index - 1].value = '';
+            boxes[index - 1].classList.remove('filled');
+        }
+    }
+}
+
+function getOTPValue() {
+    return Array.from(OTP_BOXES()).map(b => b.value).join('');
+}
+
+let _otpTimerInterval = null;
+
+function showOTPModal(onVerify) {
+    OTP_BOXES().forEach(b => {
+        b.value = '';
+        b.classList.remove('filled');
+    });
+
+    // Countdown
+    let secs = 30;
+    const timerEl  = document.getElementById('otpTimerDisplay');
+    const resendBtn= document.getElementById('otpResendBtn');
+
+    if (_otpTimerInterval) clearInterval(_otpTimerInterval);
+    if (resendBtn) resendBtn.disabled = true;
+    if (timerEl)   timerEl.textContent = secs;
+
+    _otpTimerInterval = setInterval(() => {
+        secs--;
+        if (timerEl) timerEl.textContent = secs;
+        if (secs <= 0) {
+            clearInterval(_otpTimerInterval);
+            if (resendBtn) resendBtn.disabled = false;
+        }
+    }, 1000);
+
+    _otpVerifyCallback = onVerify;
+    openModal('otpModal');
+
+    // Focus first box
+    setTimeout(() => OTP_BOXES()[0]?.focus(), 100);
+}
+
+let _otpVerifyCallback = null;
+
+function submitOTPModal() {
+    const otp = getOTPValue();
+    if (otp.length < 6) {
+        alert('Please enter all 6 digits.');
+        return;
+    }
+    closeModal('otpModal');
+    if (typeof _otpVerifyCallback === 'function') {
+        _otpVerifyCallback(otp);
+        _otpVerifyCallback = null;
+    }
+}
+
+function resendOTP() {
+    OTP_BOXES().forEach(b => {
+        b.value = '';
+        b.classList.remove('filled');
+    });
+    showOTPModal(_otpVerifyCallback);
+}
+
+
+/* ── Success modal ────────────────────────────────── */
+function showSuccess(title, message, details = null, btnLabel = 'Done', onDone = null) {
+    document.getElementById('successModalTitle').textContent   = title || 'Success!';
+    document.getElementById('successModalMessage').textContent = message || '';
+
+    const detailEl = document.getElementById('successModalDetails');
+    if (details && detailEl) {
+        detailEl.style.display = 'block';
+        detailEl.innerHTML = Object.entries(details)
+            .map(([k, v]) => `
+                <div style="display:flex;justify-content:space-between;
+                            padding:0.35rem 0;border-bottom:1px solid #3D4166;">
+                    <span style="color:#8189C1;font-size:0.78rem;">${k}</span>
+                    <span style="color:#F0F2FF;font-weight:600;font-size:0.82rem;">${v}</span>
+                </div>`)
+            .join('');
+    } else if (detailEl) {
+        detailEl.style.display = 'none';
+    }
+
+    const btn = document.getElementById('successModalBtn');
+    if (btn) {
+        btn.textContent = btnLabel;
+        btn.onclick = () => {
+            closeModal('successModal');
+            if (typeof onDone === 'function') onDone();
+        };
+    }
+
+    openModal('successModal');
+}
+
+
+/* ── Appointment modal ────────────────────────────── */
+let _currentAppointmentId = null;
+
+function showAppointmentModal(appointment) {
+    _currentAppointmentId = appointment?.id || null;
+
+    const body = document.getElementById('appointmentModalBody');
+    if (!body || !appointment) return;
+
+    const statusColors = {
+        confirmed: '#10B981',
+        pending:   '#F59E0B',
+        cancelled: '#EF4444',
+        completed: '#9FA5D5',
+    };
+    const sc = statusColors[appointment.status] || '#B8BFEA';
+
+    body.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.875rem;margin-bottom:1rem;">
+
+            <div style="background:#1A1C2E;border:1px solid #3D4166;border-radius:10px;padding:0.875rem;">
+                <div style="font-size:0.7rem;font-weight:700;color:#8189C1;text-transform:uppercase;
+                            letter-spacing:0.07em;margin-bottom:0.3rem;">Appointment ID</div>
+                <div style="font-size:0.85rem;font-weight:700;color:#F0F2FF;font-family:monospace;">
+                    ${appointment.id}
+                </div>
+            </div>
+
+            <div style="background:#1A1C2E;border:1px solid #3D4166;border-radius:10px;padding:0.875rem;">
+                <div style="font-size:0.7rem;font-weight:700;color:#8189C1;text-transform:uppercase;
+                            letter-spacing:0.07em;margin-bottom:0.3rem;">Status</div>
+                <div style="font-size:0.85rem;font-weight:700;color:${sc};">
+                    ${(appointment.status || '').toUpperCase()}
+                </div>
+            </div>
+
+            <div style="background:#1A1C2E;border:1px solid #3D4166;border-radius:10px;padding:0.875rem;">
+                <div style="font-size:0.7rem;font-weight:700;color:#8189C1;text-transform:uppercase;
+                            letter-spacing:0.07em;margin-bottom:0.3rem;">Date</div>
+                <div style="font-size:0.85rem;font-weight:700;color:#F0F2FF;">
+                    ${appointment.date}
+                </div>
+            </div>
+
+            <div style="background:#1A1C2E;border:1px solid #3D4166;border-radius:10px;padding:0.875rem;">
+                <div style="font-size:0.7rem;font-weight:700;color:#8189C1;text-transform:uppercase;
+                            letter-spacing:0.07em;margin-bottom:0.3rem;">Time</div>
+                <div style="font-size:0.85rem;font-weight:700;color:#F0F2FF;">
+                    ${appointment.time}
+                </div>
+            </div>
+
+            <div style="background:#1A1C2E;border:1px solid #3D4166;border-radius:10px;
+                        padding:0.875rem;grid-column:1/-1;">
+                <div style="font-size:0.7rem;font-weight:700;color:#8189C1;text-transform:uppercase;
+                            letter-spacing:0.07em;margin-bottom:0.3rem;">Office / Tehsil</div>
+                <div style="font-size:0.85rem;font-weight:600;color:#F0F2FF;">
+                    ${appointment.office || appointment.tehsil || '—'}
+                </div>
+            </div>
+
+            ${appointment.purpose ? `
+            <div style="background:#1A1C2E;border:1px solid #3D4166;border-radius:10px;
+                        padding:0.875rem;grid-column:1/-1;">
+                <div style="font-size:0.7rem;font-weight:700;color:#8189C1;text-transform:uppercase;
+                            letter-spacing:0.07em;margin-bottom:0.3rem;">Purpose</div>
+                <div style="font-size:0.85rem;color:#B8BFEA;line-height:1.5;">
+                    ${appointment.purpose}
+                </div>
+            </div>` : ''}
+
+        </div>
+
+        <div class="alert alert-info">
+            <span class="alert-icon">ℹ️</span>
+            <div class="alert-content">
+                <div class="alert-title">Documents Required</div>
+                Please carry original Aadhaar card, property documents,
+                and two passport-size photographs to the appointment.
+            </div>
+        </div>
+    `;
+
+    // Hide cancel button if already cancelled/completed
+    const cancelBtn = document.getElementById('appointmentCancelBtn');
+    if (cancelBtn) {
+        cancelBtn.style.display =
+            (appointment.status === 'cancelled' || appointment.status === 'completed')
+                ? 'none' : '';
+    }
+
+    openModal('appointmentModal');
+}
+
+function cancelAppointmentFromModal() {
+    closeModal('appointmentModal');
+    if (_currentAppointmentId && typeof cancelAppointment === 'function') {
+        cancelAppointment(_currentAppointmentId);
+    }
+}
+
+function rescheduleAppointment() {
+    closeModal('appointmentModal');
+    window.location.href = '../../pages/citizen/book-appointment.html';
+}
+</script>

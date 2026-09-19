@@ -3,37 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local Authority Dashboard - Bhoomi</title>
-    <link rel="stylesheet" href="../../assets/css/citizen.css">
+    <title>Authority Dashboard - B.H.U.M.I</title>
     <link rel="stylesheet" href="../../assets/css/authority.css">
 </head>
 <body>
+    <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-header">
             <div class="logo">
                 <div class="logo-icon"></div>
-                <span class="logo-text">BHOOMI</span>
+                <span class="logo-text">B.H.U.M.I</span>
+            </div>
+            <div class="authority-badge">
+                <span>🏛️ Local Authority</span>
             </div>
         </div>
+        
         <nav class="sidebar-nav">
             <a href="dashboard.html" class="nav-item active">
-                <span class="icon">🏛️</span>
-                <span>Officer Desk</span>
+                <span class="icon">📊</span>
+                <span>Dashboard</span>
             </a>
             <a href="verification.html" class="nav-item">
-                <span class="icon">🔍</span>
-                <span>Document Audit</span>
+                <span class="icon">✓</span>
+                <span>Document Verification</span>
             </a>
             <a href="ekyc.html" class="nav-item">
-                <span class="icon">👤</span>
-                <span>eKYC Biometrics</span>
+                <span class="icon">🆔</span>
+                <span>eKYC Processing</span>
             </a>
             <a href="registry.html" class="nav-item">
+                <span class="icon">📝</span>
+                <span>Registry & Mutation</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">📋</span>
+                <span>Pending Applications</span>
+            </a>
+            <a href="#" class="nav-item">
                 <span class="icon">📜</span>
-                <span>Mutation & Registry</span>
+                <span>Completed Records</span>
+            </a>
+            <a href="#" class="nav-item">
+                <span class="icon">⚙️</span>
+                <span>Settings</span>
             </a>
         </nav>
+
         <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="user-avatar">RS</div>
+                <div class="user-details">
+                    <strong>Ramesh Sharma</strong>
+                    <span>Registrar, Sadar</span>
+                </div>
+            </div>
             <a href="../../index.html" class="logout-btn">
                 <span class="icon">🚪</span>
                 <span>Logout</span>
@@ -41,82 +65,302 @@
         </div>
     </aside>
 
+    <!-- Main Content -->
     <main class="main-content">
+        <!-- Top Header -->
         <header class="top-header">
             <div class="header-left">
-                <h1>Sub-Registrar Office Queue</h1>
-                <p>Tehsil: Haveli, Pune | Officer Desk #04</p>
+                <h1>Authority Dashboard</h1>
+                <p>Lucknow Sadar Registry Office</p>
             </div>
-            <div class="user-profile">
-                <div class="avatar" style="background: var(--info-blue);">SRO</div>
-                <div class="user-info">
-                    <span class="name">Dr. V. K. Deshmukh</span>
-                    <span class="role">Sub-Registrar Officer</span>
+            <div class="header-right">
+                <div class="quick-actions-header">
+                    <button class="quick-btn">
+                        <span>📋</span> New Application
+                    </button>
+                    <button class="quick-btn">
+                        <span>🔍</span> Search Records
+                    </button>
+                </div>
+                <div class="notification-icon">
+                    <span class="icon">🔔</span>
+                    <span class="badge">12</span>
                 </div>
             </div>
         </header>
 
+        <!-- Stats Overview -->
         <section class="stats-section">
-            <div class="stat-card">
-                <div class="stat-icon yellow">⏳</div>
-                <div class="stat-info">
-                    <h3>14</h3>
-                    <p>Pending Verifications</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon green">✓</div>
-                <div class="stat-info">
-                    <h3>28</h3>
-                    <p>Approved Mutations Today</p>
-                </div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon blue">👤</div>
+            <div class="stat-card urgent">
+                <div class="stat-icon">⏰</div>
                 <div class="stat-info">
                     <h3>8</h3>
-                    <p>eKYC Slots Scheduled</p>
+                    <p>Urgent Applications</p>
+                    <span class="stat-trend">Due Today</span>
+                </div>
+            </div>
+            <div class="stat-card pending">
+                <div class="stat-icon">⏳</div>
+                <div class="stat-info">
+                    <h3>24</h3>
+                    <p>Pending Verifications</p>
+                    <span class="stat-trend">+5 from yesterday</span>
+                </div>
+            </div>
+            <div class="stat-card completed">
+                <div class="stat-icon">✓</div>
+                <div class="stat-info">
+                    <h3>156</h3>
+                    <p>Completed This Month</p>
+                    <span class="stat-trend">↑ 12% from last month</span>
+                </div>
+            </div>
+            <div class="stat-card scheduled">
+                <div class="stat-icon">📅</div>
+                <div class="stat-info">
+                    <h3>15</h3>
+                    <p>Scheduled Appointments</p>
+                    <span class="stat-trend">This Week</span>
                 </div>
             </div>
         </section>
 
-        <section class="my-properties">
-            <h2 class="section-title">Pending Deed Approval Queue</h2>
-            <div class="properties-table">
+        <!-- Quick Overview -->
+        <section class="overview-section">
+            <div class="overview-left">
+                <h2 class="section-title">Today's Tasks</h2>
+                <div class="tasks-list">
+                    <div class="task-item high-priority">
+                        <div class="task-header">
+                            <span class="priority-badge urgent">URGENT</span>
+                            <span class="task-time">2 hours left</span>
+                        </div>
+                        <h4>Document Verification - Khasra 234/5</h4>
+                        <p>Applicant: Suresh Kumar | Registry Type: Sale Deed</p>
+                        <div class="task-footer">
+                            <button class="task-btn primary" onclick="window.location.href='verification.html'">Start Verification</button>
+                            <button class="task-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="task-item medium-priority">
+                        <div class="task-header">
+                            <span class="priority-badge medium">MEDIUM</span>
+                            <span class="task-time">5 hours left</span>
+                        </div>
+                        <h4>eKYC Approval - Application #2024-0156</h4>
+                        <p>Applicant: Priya Singh | Registry Type: Gift Deed</p>
+                        <div class="task-footer">
+                            <button class="task-btn primary" onclick="window.location.href='ekyc.html'">Process eKYC</button>
+                            <button class="task-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="task-item normal-priority">
+                        <div class="task-header">
+                            <span class="priority-badge normal">NORMAL</span>
+                            <span class="task-time">Tomorrow</span>
+                        </div>
+                        <h4>Registry Finalization - Khasra 567/8</h4>
+                        <p>Applicant: Amit Verma | Registry Type: Inheritance</p>
+                        <div class="task-footer">
+                            <button class="task-btn primary" onclick="window.location.href='registry.html'">Finalize Registry</button>
+                            <button class="task-btn">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overview-right">
+                <h2 class="section-title">Application Statistics</h2>
+                <div class="chart-card">
+                    <canvas id="applicationChart"></canvas>
+                </div>
+                <div class="stats-breakdown">
+                    <div class="breakdown-item">
+                        <div class="breakdown-color" style="background: #10B981;"></div>
+                        <span>Approved: 156</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-color" style="background: #F59E0B;"></div>
+                        <span>Pending: 24</span>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-color" style="background: #EF4444;"></div>
+                        <span>Rejected: 8</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Applications -->
+        <section class="applications-section">
+            <h2 class="section-title">Recent Applications</h2>
+            <div class="applications-table">
                 <table>
                     <thead>
                         <tr>
-                            <th>Mutation ID</th>
-                            <th>ULPIN</th>
-                            <th>Seller / Buyer</th>
-                            <th>AI Verification</th>
+                            <th>Application ID</th>
+                            <th>Applicant Name</th>
+                            <th>Khasra No.</th>
+                            <th>Type</th>
+                            <th>Submitted On</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>MUT-2026-8812</strong></td>
-                            <td>BHUMI-2026-MH-984210</td>
-                            <td>Rajesh Sharma → Ananya Verma</td>
-                            <td><span class="status verified">98% Match</span></td>
+                            <td><strong>#2024-0234</strong></td>
+                            <td>Suresh Kumar</td>
+                            <td>234/5</td>
+                            <td>Sale Deed</td>
+                            <td>15-Jan-2024</td>
+                            <td><span class="status-badge pending">Pending Verification</span></td>
                             <td>
-                                <button class="table-btn" onclick="location.href='verification.html'">Inspect</button>
-                                <button class="table-btn secondary" onclick="location.href='registry.html'">Approve</button>
+                                <button class="action-btn" onclick="window.location.href='verification.html'">Process</button>
                             </td>
                         </tr>
                         <tr>
-                            <td><strong>MUT-2026-8890</strong></td>
-                            <td>BHUMI-2026-MH-330192</td>
-                            <td>Suresh Patil → Vikramaditya Rao</td>
-                            <td><span class="status pending">eKYC Required</span></td>
+                            <td><strong>#2024-0233</strong></td>
+                            <td>Priya Singh</td>
+                            <td>456/7</td>
+                            <td>Gift Deed</td>
+                            <td>14-Jan-2024</td>
+                            <td><span class="status-badge kyc">eKYC Pending</span></td>
                             <td>
-                                <button class="table-btn" onclick="location.href='ekyc.html'">Process eKYC</button>
+                                <button class="action-btn" onclick="window.location.href='ekyc.html'">Verify</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#2024-0232</strong></td>
+                            <td>Amit Verma</td>
+                            <td>567/8</td>
+                            <td>Inheritance</td>
+                            <td>13-Jan-2024</td>
+                            <td><span class="status-badge approved">Approved</span></td>
+                            <td>
+                                <button class="action-btn secondary">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#2024-0231</strong></td>
+                            <td>Rajesh Sharma</td>
+                            <td>789/9</td>
+                            <td>Sale Deed</td>
+                            <td>12-Jan-2024</td>
+                            <td><span class="status-badge completed">Completed</span></td>
+                            <td>
+                                <button class="action-btn secondary">View</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>#2024-0230</strong></td>
+                            <td>Neha Gupta</td>
+                            <td>890/1</td>
+                            <td>Sale Deed</td>
+                            <td>11-Jan-2024</td>
+                            <td><span class="status-badge rejected">Documents Missing</span></td>
+                            <td>
+                                <button class="action-btn">Contact</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
+
+        <!-- Appointments Today -->
+        <section class="appointments-section">
+            <h2 class="section-title">Today's Appointments</h2>
+            <div class="appointments-grid">
+                <div class="appointment-card">
+                    <div class="appointment-time">
+                        <span class="time">10:00 AM</span>
+                        <span class="duration">30 min</span>
+                    </div>
+                    <div class="appointment-details">
+                        <h4>Suresh Kumar</h4>
+                        <p>Registry: Sale Deed | Khasra: 234/5</p>
+                        <span class="appointment-status ongoing">Ongoing</span>
+                    </div>
+                </div>
+
+                <div class="appointment-card">
+                    <div class="appointment-time">
+                        <span class="time">11:00 AM</span>
+                        <span class="duration">45 min</span>
+                    </div>
+                    <div class="appointment-details">
+                        <h4>Priya Singh</h4>
+                        <p>Registry: Gift Deed | Khasra: 456/7</p>
+                        <span class="appointment-status upcoming">Upcoming</span>
+                    </div>
+                </div>
+
+                <div class="appointment-card">
+                    <div class="appointment-time">
+                        <span class="time">02:00 PM</span>
+                        <span class="duration">30 min</span>
+                    </div>
+                    <div class="appointment-details">
+                        <h4>Amit Verma</h4>
+                        <p>Registry: Inheritance | Khasra: 567/8</p>
+                        <span class="appointment-status upcoming">Upcoming</span>
+                    </div>
+                </div>
+
+                <div class="appointment-card">
+                    <div class="appointment-time">
+                        <span class="time">03:30 PM</span>
+                        <span class="duration">30 min</span>
+                    </div>
+                    <div class="appointment-details">
+                        <h4>Kavita Sharma</h4>
+                        <p>Registry: Sale Deed | Khasra: 678/9</p>
+                        <span class="appointment-status upcoming">Upcoming</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blockchain Activity -->
+        <section class="blockchain-section">
+            <h2 class="section-title">Recent Blockchain Transactions</h2>
+            <div class="blockchain-list">
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">🔗</div>
+                    <div class="blockchain-details">
+                        <h4>Registry Recorded on Blockchain</h4>
+                        <p>Application #2024-0232 | Hash: 0x7a8f...92e4</p>
+                        <span class="blockchain-time">5 minutes ago</span>
+                    </div>
+                    <button class="verify-blockchain-btn">Verify on Chain</button>
+                </div>
+
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">🔗</div>
+                    <div class="blockchain-details">
+                        <h4>Mutation Entry Updated</h4>
+                        <p>Khasra 234/5 | Hash: 0x9b3c...45d7</p>
+                        <span class="blockchain-time">15 minutes ago</span>
+                    </div>
+                    <button class="verify-blockchain-btn">Verify on Chain</button>
+                </div>
+
+                <div class="blockchain-item">
+                    <div class="blockchain-icon">🔗</div>
+                    <div class="blockchain-details">
+                        <h4>Document Verification Logged</h4>
+                        <p>Application #2024-0231 | Hash: 0x4e5f...78a9</p>
+                        <span class="blockchain-time">1 hour ago</span>
+                    </div>
+                    <button class="verify-blockchain-btn">Verify on Chain</button>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <script src="../../assets/js/authority.js"></script>
 </body>
 </html>

@@ -1,121 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validator Node Monitor - Bhoomi HQ</title>
-    <link rel="stylesheet" href="../../assets/css/citizen.css">
-    <link rel="stylesheet" href="../../assets/css/government.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B.H.U.M.I — Registry Monitoring</title>
+    <link rel="stylesheet" href="../../assets/css/government.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-lavender: #9FA5D5;
+            --light-lavender:   #B8BFEA;
+            --soft-lavender:    #C9CEF0;
+            --dark-lavender:    #8189C1;
+            --darker-lavender:  #6B72A8;
+            --accent-peach:     #FED7B8;
+            --light-peach:      #FFE5D0;
+            --soft-peach:       #FFF0E0;
+            --dark-peach:       #F5C99E;
+            --primary-bg:       #0D0E1A;
+            --secondary-bg:     #1A1C2E;
+            --card-bg:          #252841;
+            --hover-bg:         #2F3354;
+            --border-color:     #3D4166;
+            --border-light:     #4A4E7A;
+            --text-white:       #FFFFFF;
+            --text-light:       #F0F2FF;
+            --text-gray:        #B8BFEA;
+            --text-muted:       #8189C1;
+            --text-dark:        #6B72A8;
+            --success-green:    #10B981;
+            --warning-yellow:   #F59E0B;
+            --info-blue:        #3B82F6;
+            --error-red:        #EF4444;
+            --purple:           #8B5CF6;
+            --gradient-primary: linear-gradient(135deg, #9FA5D5 0%, #FED7B8 100%);
+            --gradient-secondary: linear-gradient(135deg, #B8BFEA 0%, #FFE5D0 100%);
+            --gradient-card:    linear-gradient(135deg, rgba(159,165,213,0.1) 0%, rgba(254,215,184,0.05) 100%);
+            --gradient-hover:   linear-gradient(135deg, rgba(159,165,213,0.2) 0%, rgba(254,215,184,0.1) 100%);
+            --gradient-bg:      linear-gradient(135deg, #0D0E1A 0%, #1A1C2E 50%, #252841 100%);
+        }
+    </style>
 </head>
 <body>
-    <aside class="sidebar">
+
+<!-- ═══════════════════ LAYOUT ═══════════════════ -->
+<div class="dashboard-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <span class="logo-text">BHOOMI</span>
+            <div class="sidebar-logo">
+                <span class="logo-icon">🏛️</span>
+                <div>
+                    <span class="logo-text">B.H.U.M.I</span>
+                    <span class="logo-sub">HQ Portal</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">&#9776;</button>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">MK</div>
+            <div class="user-info">
+                <span class="user-name">Mukesh Kumar</span>
+                <span class="user-role">Joint Secretary</span>
+                <span class="sidebar-role-badge gov-badge">GOV HQ</span>
             </div>
         </div>
+
         <nav class="sidebar-nav">
+            <div class="nav-section-label">Overview</div>
             <a href="dashboard.html" class="nav-item">
-                <span class="icon">🏛️</span>
-                <span>State HQ</span>
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Dashboard</span>
             </a>
+
+            <div class="nav-section-label">Surveillance</div>
             <a href="monitoring.html" class="nav-item active">
-                <span class="icon">⚡</span>
-                <span>Node Monitor</span>
+                <span class="nav-icon">🗺️</span>
+                <span class="nav-text">Registry Monitoring</span>
             </a>
             <a href="analytics.html" class="nav-item">
-                <span class="icon">📈</span>
-                <span>Revenue Analytics</span>
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Analytics</span>
             </a>
             <a href="disputes.html" class="nav-item">
-                <span class="icon">⚖️</span>
-                <span>Dispute Tribunal</span>
+                <span class="nav-icon">⚖️</span>
+                <span class="nav-text">Disputes</span>
+            </a>
+
+            <div class="nav-section-label">Account</div>
+            <a href="../../auth/login.html" class="nav-item">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
             </a>
         </nav>
-        <div class="sidebar-footer">
-            <a href="../../index.html" class="logout-btn">
-                <span class="icon">🚪</span>
-                <span>Logout</span>
-            </a>
-        </div>
     </aside>
 
-    <main class="main-content">
-        <header class="top-header">
-            <div class="header-left">
-                <h1>Hyperledger Validator Network Monitor</h1>
-                <p>Live node consensus, block production & IPFS cluster status</p>
-            </div>
-        </header>
+    <!-- ── MAIN ── -->
+    <main class="main-content" id="mainContent">
 
-        <section class="nodes-status-grid">
-            <div class="node-card">
-                <div class="node-card-header">
-                    <span class="node-name">Node-MH-01 (Mumbai SDC)</span>
-                    <span class="status verified">Active</span>
-                </div>
-                <div class="node-stats">
-                    <span>Height: #10484</span>
-                    <span>Latency: 12ms</span>
-                </div>
+        <!-- Top bar -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <h1 class="topbar-title">Registry Monitoring</h1>
+                <p class="topbar-sub">Real-time tehsil & block-wise tracking</p>
             </div>
+            <div class="topbar-right">
+                <span class="live-dot">LIVE</span>
+                <button class="btn-export" onclick="exportCSV()">
+                    ⬇ Export CSV
+                </button>
+            </div>
+        </div>
 
-            <div class="node-card">
-                <div class="node-card-header">
-                    <span class="node-name">Node-MH-02 (Pune SDC)</span>
-                    <span class="status verified">Active</span>
+        <!-- ── KPI STRIP ── -->
+        <div class="monitoring-grid" style="grid-template-columns: repeat(4, 1fr);">
+
+            <div class="monitoring-card">
+                <div class="card-header">
+                    <span class="card-title">Total Registries</span>
+                    <span class="card-icon">📋</span>
                 </div>
-                <div class="node-stats">
-                    <span>Height: #10484</span>
-                    <span>Latency: 16ms</span>
-                </div>
+                <div class="card-value" id="totalRegistries">1,48,302</div>
+                <div class="card-sub">↑ 12.4% from last month</div>
             </div>
 
-            <div class="node-card">
-                <div class="node-card-header">
-                    <span class="node-name">Node-MH-03 (Nagpur HQ)</span>
-                    <span class="status verified">Active</span>
+            <div class="monitoring-card">
+                <div class="card-header">
+                    <span class="card-title">Active Tehsils</span>
+                    <span class="card-icon">🏘️</span>
                 </div>
-                <div class="node-stats">
-                    <span>Height: #10484</span>
-                    <span>Latency: 22ms</span>
+                <div class="card-value" id="activeTehsils">247</div>
+                <div class="card-sub">out of 312 total</div>
+            </div>
+
+            <div class="monitoring-card">
+                <div class="card-header">
+                    <span class="card-title">Pending Mutations</span>
+                    <span class="card-icon">⏳</span>
+                </div>
+                <div class="card-value" id="pendingMutations">3,841</div>
+                <div class="card-sub" style="color: var(--warning-yellow);">↑ High — action needed</div>
+            </div>
+
+            <div class="monitoring-card">
+                <div class="card-header">
+                    <span class="card-title">Blockchain Records</span>
+                    <span class="card-icon">🔗</span>
+                </div>
+                <div class="card-value" id="blockchainRecords">1,44,019</div>
+                <div class="card-sub" style="color: var(--success-green);">97.1% coverage</div>
+            </div>
+
+        </div>
+
+        <!-- ── CHART ROW ── -->
+        <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+
+            <!-- Weekly Registrations Chart -->
+            <div class="analytics-chart-card">
+                <div class="chart-title">Weekly Registration Volume</div>
+                <div class="chart-subtitle">Last 8 weeks — all tehsils combined</div>
+                <div class="chart-canvas-wrap" style="height: 240px;">
+                    <canvas id="weeklyChart"></canvas>
                 </div>
             </div>
-        </section>
 
-        <section class="my-properties">
-            <h2 class="section-title">Live Block Ledger Stream</h2>
-            <div class="properties-table">
-                <table>
+            <!-- Registry Type Breakdown -->
+            <div class="analytics-chart-card">
+                <div class="chart-title">Deed Type Breakdown</div>
+                <div class="chart-subtitle">Current month</div>
+                <div class="chart-canvas-wrap"
+                     style="height: 240px; display:flex; align-items:center; justify-content:center;">
+                    <canvas id="deedChart" style="max-width:200px;"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ── ACTIVITY HEATMAP ── -->
+        <div class="region-section" style="margin-bottom: 2rem;">
+            <div class="region-section-title">Daily Activity Heatmap — Last 7 Weeks</div>
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 0.72rem; color: var(--text-muted);">
+                <span>Mon</span><span>Tue</span><span>Wed</span>
+                <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+            <div class="heatmap-grid" id="heatmapGrid"></div>
+            <div style="display:flex; align-items:center; gap: 0.5rem; margin-top: 0.75rem;">
+                <span style="font-size:0.72rem; color: var(--text-muted);">Less</span>
+                <div style="width:12px;height:12px;border-radius:3px;background:var(--secondary-bg);border:1px solid var(--border-color);"></div>
+                <div style="width:12px;height:12px;border-radius:3px;" class="heatmap-cell level-1"></div>
+                <div style="width:12px;height:12px;border-radius:3px;" class="heatmap-cell level-2"></div>
+                <div style="width:12px;height:12px;border-radius:3px;" class="heatmap-cell level-3"></div>
+                <div style="width:12px;height:12px;border-radius:3px;" class="heatmap-cell level-4"></div>
+                <div style="width:12px;height:12px;border-radius:3px;" class="heatmap-cell level-5"></div>
+                <span style="font-size:0.72rem; color: var(--text-muted);">More</span>
+            </div>
+        </div>
+
+        <!-- ── TEHSIL TABLE ── -->
+        <div class="region-section">
+            <div class="region-section-title"
+                 style="justify-content: space-between; display:flex; align-items:center; flex-wrap:wrap; gap:1rem;">
+                <span style="display:flex;align-items:center;gap:0.6rem;">
+                    <span style="display:block;width:4px;height:1rem;background:var(--gradient-primary);border-radius:2px;"></span>
+                    Tehsil-wise Registry Count
+                </span>
+                <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                    <input type="text" id="tehsilSearch"
+                           placeholder="Search tehsil..."
+                           style="background:var(--secondary-bg);border:1px solid var(--border-color);
+                                  border-radius:8px;color:var(--text-light);padding:0.45rem 0.875rem;
+                                  font-size:0.82rem;outline:none;font-family:inherit;"
+                           oninput="filterTehsilTable(this.value)" />
+                    <select id="districtFilter"
+                            onchange="filterByDistrict(this.value)"
+                            style="background:var(--secondary-bg);border:1px solid var(--border-color);
+                                   border-radius:8px;color:var(--text-light);padding:0.45rem 0.875rem;
+                                   font-size:0.82rem;outline:none;font-family:inherit;">
+                        <option value="all">All Districts</option>
+                        <option value="agra">Agra</option>
+                        <option value="lucknow">Lucknow</option>
+                        <option value="varanasi">Varanasi</option>
+                        <option value="kanpur">Kanpur</option>
+                        <option value="prayagraj">Prayagraj</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tehsil-table-wrapper" style="margin-top:1rem;">
+                <table class="tehsil-table" id="tehsilTable">
                     <thead>
                         <tr>
-                            <th>Block #</th>
-                            <th>Block Hash</th>
-                            <th>Transactions</th>
-                            <th>Validator Node</th>
-                            <th>Timestamp</th>
+                            <th>Tehsil / Block</th>
+                            <th>District</th>
+                            <th>Registries</th>
+                            <th>Mutations</th>
+                            <th>Pending</th>
+                            <th>Coverage</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>10484</strong></td>
-                            <td><code>0x8f3c71a9e42b10d5c829e...</code></td>
-                            <td>12 Mutations</td>
-                            <td>Node-MH-01</td>
-                            <td>Just now</td>
-                        </tr>
-                        <tr>
-                            <td><strong>10483</strong></td>
-                            <td><code>0x7e2d60b8d31a09c4b718d...</code></td>
-                            <td>8 Title Verifications</td>
-                            <td>Node-MH-02</td>
-                            <td>2 min ago</td>
-                        </tr>
+                    <tbody id="tehsilTableBody">
+                        <!-- Injected by JS -->
                     </tbody>
                 </table>
             </div>
-        </section>
+
+            <!-- Pagination -->
+            <div style="display:flex; align-items:center; justify-content:space-between;
+                        margin-top: 1.25rem; flex-wrap:wrap; gap:0.75rem;">
+                <span id="paginationInfo"
+                      style="font-size:0.78rem; color:var(--text-muted);">
+                    Showing 1–10 of 42 tehsils
+                </span>
+                <div style="display:flex;gap:0.5rem;">
+                    <button onclick="changePage(-1)" id="prevBtn"
+                            style="padding:0.4rem 0.875rem;border-radius:8px;
+                                   background:var(--secondary-bg);border:1px solid var(--border-color);
+                                   color:var(--text-gray);font-size:0.82rem;cursor:pointer;font-family:inherit;">
+                        ← Prev
+                    </button>
+                    <button onclick="changePage(1)" id="nextBtn"
+                            style="padding:0.4rem 0.875rem;border-radius:8px;
+                                   background:var(--secondary-bg);border:1px solid var(--border-color);
+                                   color:var(--text-gray);font-size:0.82rem;cursor:pointer;font-family:inherit;">
+                        Next →
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </main>
+</div>
+
+<script src="../../assets/js/government.js"></script>
+<script>
+// ── Inline chart init for monitoring page ──
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Weekly Chart
+    const wCtx = document.getElementById('weeklyChart').getContext('2d');
+    new Chart(wCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Wk 1','Wk 2','Wk 3','Wk 4','Wk 5','Wk 6','Wk 7','Wk 8'],
+            datasets: [{
+                label: 'Registrations',
+                data: [2140, 2890, 2450, 3200, 2780, 3490, 3120, 3850],
+                backgroundColor: 'rgba(159,165,213,0.5)',
+                borderColor: '#9FA5D5',
+                borderWidth: 1.5,
+                borderRadius: 6,
+                hoverBackgroundColor: 'rgba(159,165,213,0.75)'
+            }, {
+                label: 'Mutations',
+                data: [890, 1120, 980, 1340, 1050, 1460, 1280, 1590],
+                backgroundColor: 'rgba(254,215,184,0.4)',
+                borderColor: '#FED7B8',
+                borderWidth: 1.5,
+                borderRadius: 6,
+                hoverBackgroundColor: 'rgba(254,215,184,0.65)'
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: '#B8BFEA', font: { size: 11 } } }
+            },
+            scales: {
+                x: { grid: { color: '#3D4166' }, ticks: { color: '#B8BFEA', font: { size: 10 } } },
+                y: { grid: { color: '#3D4166' }, ticks: { color: '#B8BFEA', font: { size: 10 } } }
+            }
+        }
+    });
+
+    // Deed Doughnut
+    const dCtx = document.getElementById('deedChart').getContext('2d');
+    new Chart(dCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Sale Deed','Gift Deed','Inheritance','Others'],
+            datasets: [{
+                data: [65, 20, 10, 5],
+                backgroundColor: ['#9FA5D5','#FED7B8','#10B981','#F59E0B'],
+                borderColor: '#252841',
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            cutout: '68%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { color: '#B8BFEA', font: { size: 10 }, padding: 12, boxWidth: 12 }
+                }
+            }
+        }
+    });
+
+    // Heatmap
+    initHeatmap();
+    // Table
+    initMonitoringTable();
+});
+</script>
 </body>
 </html>

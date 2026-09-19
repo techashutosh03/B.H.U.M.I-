@@ -1,18 +1,313 @@
-<nav class="navbar">
-    <div class="nav-container">
-        <div class="logo">
-            <div class="logo-icon"></div>
-            <span class="logo-text">BHOOMI</span>
-        </div>
-        <ul class="nav-menu">
-            <li><a href="../../index.html#about">About</a></li>
-            <li><a href="../../index.html#features">Features</a></li>
-            <li><a href="../../index.html#services">Services</a></li>
-            <li><a href="../../index.html#contact">Contact</a></li>
+<!--
+    B.H.U.M.I — Reusable Navbar Component
+    Usage: include via JS fetch or copy-paste into landing/auth pages
+    Not used on dashboard pages (those use sidebar layout).
+-->
+
+<nav class="bh-navbar" id="bhNavbar">
+    <div class="bh-navbar-inner">
+
+        <!-- Logo -->
+        <a href="../index.html" class="bh-nav-logo">
+            <span class="bh-nav-logo-icon">🏛️</span>
+            <div class="bh-nav-logo-text">
+                <span class="bh-nav-logo-main">B.H.U.M.I</span>
+                <span class="bh-nav-logo-tag">Digital Land Registry</span>
+            </div>
+        </a>
+
+        <!-- Nav Links -->
+        <ul class="bh-nav-links" id="bhNavLinks">
+            <li><a href="../index.html#home"     class="bh-nav-link">Home</a></li>
+            <li><a href="../index.html#features" class="bh-nav-link">Features</a></li>
+            <li><a href="../index.html#how"      class="bh-nav-link">How It Works</a></li>
+            <li><a href="../index.html#portals"  class="bh-nav-link">Portals</a></li>
+            <li><a href="../index.html#contact"  class="bh-nav-link">Contact</a></li>
         </ul>
-        <div class="nav-buttons">
-            <a href="../../auth/login.html" class="btn-login">Sign In</a>
-            <a href="../../auth/register.html" class="btn-register">Get Started</a>
+
+        <!-- CTA -->
+        <div class="bh-nav-cta">
+            <a href="../auth/login.html" class="bh-nav-btn-login">Login</a>
+            <a href="../auth/register.html" class="bh-nav-btn-register">Register</a>
         </div>
+
+        <!-- Mobile toggle -->
+        <button class="bh-nav-hamburger" id="bhNavHamburger"
+                aria-label="Open navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
     </div>
 </nav>
+
+<!-- ── Navbar Styles (self-contained) ── -->
+<style>
+.bh-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    background: rgba(13, 14, 26, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(61, 65, 102, 0.6);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bh-navbar.scrolled {
+    background: rgba(13, 14, 26, 0.97);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.bh-navbar-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+/* Logo */
+.bh-nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.bh-nav-logo-icon {
+    font-size: 1.5rem;
+}
+
+.bh-nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.bh-nav-logo-main {
+    font-size: 1.1rem;
+    font-weight: 800;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #9FA5D5 0%, #FED7B8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bh-nav-logo-tag {
+    font-size: 0.6rem;
+    color: #8189C1;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+/* Nav links */
+.bh-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+}
+
+.bh-nav-link {
+    padding: 0.5rem 0.875rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #B8BFEA;
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.bh-nav-link:hover,
+.bh-nav-link.active {
+    color: #F0F2FF;
+    background: rgba(159, 165, 213, 0.1);
+}
+
+/* CTA */
+.bh-nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+}
+
+.bh-nav-btn-login {
+    padding: 0.5rem 1.1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #B8BFEA;
+    border: 1px solid #3D4166;
+    background: transparent;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.bh-nav-btn-login:hover {
+    color: #F0F2FF;
+    border-color: #4A4E7A;
+    background: rgba(255,255,255,0.05);
+}
+
+.bh-nav-btn-register {
+    padding: 0.5rem 1.1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0D0E1A;
+    background: linear-gradient(135deg, #9FA5D5 0%, #FED7B8 100%);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.bh-nav-btn-register:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(159, 165, 213, 0.3);
+}
+
+/* Hamburger */
+.bh-nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.4rem;
+    background: none;
+    border: 1px solid #3D4166;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bh-nav-hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: #B8BFEA;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.bh-nav-hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.bh-nav-hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.bh-nav-hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile drawer */
+@media (max-width: 900px) {
+    .bh-nav-links {
+        position: fixed;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: rgba(26, 28, 46, 0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 0;
+        padding: 1rem 1.5rem 1.5rem;
+        border-bottom: 1px solid #3D4166;
+        transform: translateY(-110%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 499;
+    }
+
+    .bh-nav-links.open {
+        transform: translateY(0);
+    }
+
+    .bh-nav-link {
+        padding: 0.75rem 1rem;
+        width: 100%;
+        border-radius: 10px;
+        font-size: 0.95rem;
+    }
+
+    .bh-nav-cta {
+        display: none;
+    }
+
+    .bh-nav-hamburger {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .bh-navbar-inner {
+        padding: 0 1rem;
+    }
+}
+</style>
+
+<!-- ── Navbar Script (self-contained) ── -->
+<script>
+(function () {
+    const navbar    = document.getElementById('bhNavbar');
+    const hamburger = document.getElementById('bhNavHamburger');
+    const navLinks  = document.getElementById('bhNavLinks');
+
+    // Scroll effect
+    window.addEventListener('scroll', () => {
+        if (navbar) {
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
+        }
+    });
+
+    // Hamburger toggle
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+
+        // Close on link click
+        navLinks.querySelectorAll('.bh-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navLinks.classList.remove('open');
+            });
+        });
+    }
+
+    // Active link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    if (sections.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.bh-nav-link').forEach(l => {
+                        l.classList.remove('active');
+                        if (l.getAttribute('href')?.includes(entry.target.id)) {
+                            l.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.4 });
+
+        sections.forEach(s => observer.observe(s));
+    }
+})();
+</script>

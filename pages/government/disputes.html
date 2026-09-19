@@ -1,86 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dispute Tribunal - Bhoomi HQ</title>
-    <link rel="stylesheet" href="../../assets/css/citizen.css">
-    <link rel="stylesheet" href="../../assets/css/government.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B.H.U.M.I — Dispute Management</title>
+    <link rel="stylesheet" href="../../assets/css/government.css" />
+    <style>
+        :root {
+            --primary-lavender: #9FA5D5;
+            --light-lavender:   #B8BFEA;
+            --soft-lavender:    #C9CEF0;
+            --dark-lavender:    #8189C1;
+            --darker-lavender:  #6B72A8;
+            --accent-peach:     #FED7B8;
+            --light-peach:      #FFE5D0;
+            --soft-peach:       #FFF0E0;
+            --dark-peach:       #F5C99E;
+            --primary-bg:       #0D0E1A;
+            --secondary-bg:     #1A1C2E;
+            --card-bg:          #252841;
+            --hover-bg:         #2F3354;
+            --border-color:     #3D4166;
+            --border-light:     #4A4E7A;
+            --text-white:       #FFFFFF;
+            --text-light:       #F0F2FF;
+            --text-gray:        #B8BFEA;
+            --text-muted:       #8189C1;
+            --text-dark:        #6B72A8;
+            --success-green:    #10B981;
+            --warning-yellow:   #F59E0B;
+            --info-blue:        #3B82F6;
+            --error-red:        #EF4444;
+            --purple:           #8B5CF6;
+            --gradient-primary: linear-gradient(135deg, #9FA5D5 0%, #FED7B8 100%);
+            --gradient-secondary: linear-gradient(135deg, #B8BFEA 0%, #FFE5D0 100%);
+            --gradient-card:    linear-gradient(135deg, rgba(159,165,213,0.1) 0%, rgba(254,215,184,0.05) 100%);
+            --gradient-hover:   linear-gradient(135deg, rgba(159,165,213,0.2) 0%, rgba(254,215,184,0.1) 100%);
+            --gradient-bg:      linear-gradient(135deg, #0D0E1A 0%, #1A1C2E 50%, #252841 100%);
+        }
+    </style>
 </head>
 <body>
-    <aside class="sidebar">
+
+<div class="dashboard-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <span class="logo-text">BHOOMI</span>
+            <div class="sidebar-logo">
+                <span class="logo-icon">🏛️</span>
+                <div>
+                    <span class="logo-text">B.H.U.M.I</span>
+                    <span class="logo-sub">HQ Portal</span>
+                </div>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">&#9776;</button>
+        </div>
+
+        <div class="sidebar-user">
+            <div class="user-avatar">MK</div>
+            <div class="user-info">
+                <span class="user-name">Mukesh Kumar</span>
+                <span class="user-role">Joint Secretary</span>
+                <span class="sidebar-role-badge gov-badge">GOV HQ</span>
             </div>
         </div>
+
         <nav class="sidebar-nav">
+            <div class="nav-section-label">Overview</div>
             <a href="dashboard.html" class="nav-item">
-                <span class="icon">🏛️</span>
-                <span>State HQ</span>
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Dashboard</span>
             </a>
+
+            <div class="nav-section-label">Surveillance</div>
             <a href="monitoring.html" class="nav-item">
-                <span class="icon">⚡</span>
-                <span>Node Monitor</span>
+                <span class="nav-icon">🗺️</span>
+                <span class="nav-text">Registry Monitoring</span>
             </a>
             <a href="analytics.html" class="nav-item">
-                <span class="icon">📈</span>
-                <span>Revenue Analytics</span>
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Analytics</span>
             </a>
             <a href="disputes.html" class="nav-item active">
-                <span class="icon">⚖️</span>
-                <span>Dispute Tribunal</span>
+                <span class="nav-icon">⚖️</span>
+                <span class="nav-text">Disputes</span>
+            </a>
+
+            <div class="nav-section-label">Account</div>
+            <a href="../../auth/login.html" class="nav-item">
+                <span class="nav-icon">🚪</span>
+                <span class="nav-text">Logout</span>
             </a>
         </nav>
-        <div class="sidebar-footer">
-            <a href="../../index.html" class="logout-btn">
-                <span class="icon">🚪</span>
-                <span>Logout</span>
-            </a>
-        </div>
     </aside>
 
-    <main class="main-content">
-        <header class="top-header">
-            <div class="header-left">
-                <h1>Revenue Tribunal Dispute Management</h1>
-                <p>High-court & tribunal stay order locks & boundary overlap resolution</p>
-            </div>
-        </header>
+    <!-- ── MAIN ── -->
+    <main class="main-content" id="mainContent">
 
-        <section class="my-properties">
-            <h2 class="section-title">Active Tribunal Case Matrix</h2>
-            <div class="properties-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Dispute ID</th>
-                            <th>ULPIN</th>
-                            <th>Litigant Parties</th>
-                            <th>Court / Tribunal</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>DSP-2026-0041</strong></td>
-                            <td>BHUMI-2026-MH-110293</td>
-                            <td>Ramesh Shah vs. State Govt</td>
-                            <td>Pune Revenue Tribunal</td>
-                            <td><span class="status pending" style="background: rgba(239, 68, 68, 0.2); color: #f87171;">Stay Order Active</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>DSP-2026-0089</strong></td>
-                            <td>BHUMI-2026-MH-771822</td>
-                            <td>Greenfield Infra vs. Farmers Coop</td>
-                            <td>Bombay High Court</td>
-                            <td><span class="status verified">Resolved via Drone Mesh</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <h1 class="topbar-title">Dispute Management</h1>
+                <p class="topbar-sub">Monitor, escalate & resolve land disputes nationwide</p>
             </div>
-        </section>
+            <div class="topbar-right">
+                <button class="btn-export" onclick="exportDisputes()">⬇ Export</button>
+            </div>
+        </div>
+
+        <!-- ── DISPUTE KPIs ── -->
+        <div class="monitoring-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 2rem;">
+
+            <div class="monitoring-card">
+                <div class="card-header">
+                    <span class="card-title">Total Disputes</span>
+                    <span class="card-icon">📁</span>
+                </div>
+                <div class="card-value">4,218</div>
+                <div class="card-sub">FY 2024–25</div>
+            </div>
+
+            <div class="monitoring-card">
+                <div class="card-header">
+                    <span class="card-title">Active / Open</span>
+                    <span class="card-icon" style="color:#EF4444;">🔴</span>
+                </div>
+                <div class="card-value" style="color:#EF4444;">1,204</div>
+                <div class="card-sub" style="color:var(--warning-yellow);">Requires monitoring</div>
+            </div>
+
+            <div class="monitoring-card">
+                <div class="card-header">
+                    <span class="card-title">Resolved</span>
+                    <span class="card-icon">✅</span>
+                </div>
+                <div class="card-value" style="color: var(--success-green);">2,791</div>
+                <div class="card-sub" style="color:var(--success-green);">66.2% resolution rate</div>
+            </div>
+
+            <div class="monitoring-card">
+                <div class="card-header">
+                    <span class="card-title">Escalated</span>
+                    <span class="card-icon">⚠️</span>
+                </div>
+                <div class="card-value" style="color: var(--warning-yellow);">223</div>
+                <div class="card-sub">Sent to High Court</div>
+            </div>
+
+        </div>
+
+        <!-- ── FILTERS ── -->
+        <div class="disputes-filters">
+            <div class="dispute-search-wrap">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="disputeSearch"
+                       placeholder="Search by ID, name or Khasra..."
+                       oninput="filterDisputes(this.value)" />
+            </div>
+
+            <div class="filter-group">
+                <label>Status</label>
+                <select id="statusFilter" onchange="filterDisputes()">
+                    <option value="all">All</option>
+                    <option value="open">Open</option>
+                    <option value="review">Under Review</option>
+                    <option value="resolved">Resolved</option>
+                    <option value="escalated">Escalated</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>District</label>
+                <select id="disputeDistrictFilter" onchange="filterDisputes()">
+                    <option value="all">All Districts</option>
+                    <option value="Agra">Agra</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Varanasi">Varanasi</option>
+                    <option value="Kanpur">Kanpur</option>
+                    <option value="Prayagraj">Prayagraj</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Type</label>
+                <select id="typeFilter" onchange="filterDisputes()">
+                    <option value="all">All Types</option>
+                    <option value="boundary">Boundary Dispute</option>
+                    <option value="ownership">Ownership Dispute</option>
+                    <option value="inheritance">Inheritance Dispute</option>
+                    <option value="fraud">Fraud Claim</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ── DISPUTES LIST ── -->
+        <div class="disputes-list" id="disputesList">
+            <!-- Injected by JS -->
+        </div>
+
+        <!-- Empty state -->
+        <div id="disputesEmpty"
+             style="display:none; text-align:center; padding:3rem 1rem;
+                    color:var(--text-muted); font-size:0.9rem;">
+            <div style="font-size:2.5rem; margin-bottom:0.75rem;">📭</div>
+            No disputes match your filters.
+        </div>
+
+        <!-- Pagination -->
+        <div style="display:flex; align-items:center; justify-content:space-between;
+                    margin-top:1.75rem; flex-wrap:wrap; gap:0.75rem;">
+            <span id="disputePaginationInfo"
+                  style="font-size:0.78rem; color:var(--text-muted);">
+                Showing 1–8 of 24 disputes
+            </span>
+            <div style="display:flex; gap:0.5rem;">
+                <button onclick="disputeChangePage(-1)"
+                        style="padding:0.4rem 0.875rem;border-radius:8px;
+                               background:var(--secondary-bg);border:1px solid var(--border-color);
+                               color:var(--text-gray);font-size:0.82rem;cursor:pointer;font-family:inherit;">
+                    ← Prev
+                </button>
+                <button onclick="disputeChangePage(1)"
+                        style="padding:0.4rem 0.875rem;border-radius:8px;
+                               background:var(--secondary-bg);border:1px solid var(--border-color);
+                               color:var(--text-gray);font-size:0.82rem;cursor:pointer;font-family:inherit;">
+                    Next →
+                </button>
+            </div>
+        </div>
+
     </main>
+</div>
+
+<!-- ── DISPUTE DETAIL MODAL ── -->
+<div class="dispute-modal-overlay" id="disputeModalOverlay">
+    <div class="dispute-modal" id="disputeModal">
+        <div class="dispute-modal-header">
+            <span class="dispute-modal-title" id="modalDisputeTitle">Dispute Detail</span>
+            <button class="modal-close-btn" onclick="closeDisputeModal()">✕</button>
+        </div>
+        <div class="dispute-modal-body" id="modalDisputeBody">
+            <!-- Injected by JS -->
+        </div>
+    </div>
+</div>
+
+<script src="../../assets/js/government.js"></script>
 </body>
 </html>
