@@ -300,6 +300,107 @@ function startCountdown(seconds, onTick, onEnd) {
     return interval; // caller can clearInterval if needed
 }
 
+/* ── Modal Open and Close Animations Helper ───────────────── */
+function openModal(id) {
+    const overlay = typeof id === 'string' ? document.getElementById(id) : id;
+    if (!overlay) return;
+    overlay.classList.remove('closing');
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(id) {
+    const overlay = typeof id === 'string' ? document.getElementById(id) : id;
+    if (!overlay) return;
+    if (overlay.classList.contains('active') && !overlay.classList.contains('closing')) {
+        overlay.classList.add('closing');
+        setTimeout(() => {
+            overlay.classList.remove('active', 'closing');
+            document.body.style.overflow = '';
+        }, 220);
+    }
+}
+
+// Global window bindings
+window.openModal = openModal;
+window.closeModal = closeModal;
+
+/* ── Universal Button Open/Close & Ripple Micro-Animations ───── */
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Dynamic Position-Aware Ripple & Spring Release Bounce on Click
+    document.body.addEventListener('click', (e) => {
+        const btn = e.target.closest('button, .btn, .btn-login, .btn-register, .service-btn, .logout-btn, .action-btn, .view-btn, .table-btn, .view-all-btn, .btn-reset, .btn-submit, .action-btn-primary, .action-btn-secondary, .view-details-btn, .btn-dispute, .btn-dispute-view, .btn-dispute-resolve, .btn-dispute-escalate, .modal-close-btn, .modal-close, .btn-export, .quick-btn, .task-btn, .verify-blockchain-btn, .view-doc-btn, .approve-btn, .reject-btn, .hold-btn, .verify-otp-btn, .resend-otp-btn, .nav-item, .tab-btn, .filter-btn, .chip, .sidebar-toggle, .mobile-menu-btn, input[type="button"], input[type="submit"], [role="button"]');
+        
+        if (!btn || btn.disabled) return;
+
+        // Position-aware ripple wave
+        const rect = btn.getBoundingClientRect();
+        const ripple = document.createElement('span');
+        ripple.className = 'bh-ripple';
+        const diameter = Math.max(rect.width, rect.height);
+        const radius = diameter / 2;
+        
+        ripple.style.width = ripple.style.height = `${diameter}px`;
+        ripple.style.left = `${e.clientX - rect.left - radius}px`;
+        ripple.style.top = `${e.clientY - rect.top - radius}px`;
+        
+        const computedStyle = window.getComputedStyle(btn);
+        if (computedStyle.position === 'static') {
+            btn.style.position = 'relative';
+        }
+        
+        const oldRipples = btn.querySelectorAll('.bh-ripple');
+        oldRipples.forEach(r => r.remove());
+        
+        btn.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 600);
+
+        // Spring release bounce physics animation
+        btn.classList.remove('btn-releasing');
+        void btn.offsetWidth; // trigger reflow
+        btn.classList.add('btn-releasing');
+        setTimeout(() => btn.classList.remove('btn-releasing'), 400);
+    });
+
+    // 2. Tactile Press-Down Physics on Mouse/Touch Down
+    const handlePressDown = (e) => {
+        const btn = e.target.closest('button, .btn, .nav-item, .quick-btn, .action-btn, .tab-btn, .filter-btn, .chip, [role="button"]');
+        if (btn && !btn.disabled) {
+            btn.classList.add('btn-pressing');
+        }
+    };
+    
+    const handlePressUp = (e) => {
+        const btn = e.target.closest('button, .btn, .nav-item, .quick-btn, .action-btn, .tab-btn, .filter-btn, .chip, [role="button"]');
+        if (btn) {
+            btn.classList.remove('btn-pressing');
+        }
+    };
+
+    document.body.addEventListener('mousedown', handlePressDown);
+    document.body.addEventListener('mouseup', handlePressUp);
+    document.body.addEventListener('touchstart', handlePressDown, { passive: true });
+    document.body.addEventListener('touchend', handlePressUp, { passive: true });
+
+    // 3. Attach backdrop click listeners for all modal overlays
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeModal(overlay);
+            }
+        });
+    });
+
+    // 4. ESC key handler for active modal close animation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay.active').forEach(overlay => {
+                closeModal(overlay);
+            });
+        }
+    });
+});
+
 /* ── Export all for module use (if ever bundled) ─────────── */
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
@@ -315,5 +416,6 @@ if (typeof module !== 'undefined' && module.exports) {
         delay, simulateFetch,
         copyToClipboard, formatKhasra, maskAadhaar,
         setActiveNavFromURL, startCountdown,
+        openModal, closeModal
     };
 }

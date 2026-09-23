@@ -147,13 +147,13 @@ function renderVerificationQueue(filter = 'all') {
     if (filtered.length === 0) {
         list.innerHTML = `
             <div style="text-align:center; padding:3rem; color:var(--text-muted);">
-                <div style="font-size:2rem; margin-bottom:0.5rem;">📭</div>
+                <div style="font-size:2rem; margin-bottom:0.5rem;"></div>
                 No documents in this queue.
             </div>`;
         return;
     }
 
-    const priorityIcon = { high:'🔴', normal:'🟡', low:'🟢' };
+    const priorityIcon = { high:'', normal:'', low:'' };
     const statusMap    = {
         pending:  `<span class="status-badge status-pending">● Pending</span>`,
         review:   `<span class="status-badge status-review">● Under Review</span>`,
@@ -165,7 +165,7 @@ function renderVerificationQueue(filter = 'all') {
         <div class="verification-item" data-id="${doc.id}">
             <div class="ver-item-left">
                 <div class="ver-priority-dot" title="Priority: ${doc.priority}">
-                    ${priorityIcon[doc.priority] || '⚪'}
+                    ${priorityIcon[doc.priority] || ''}
                 </div>
                 <div class="ver-info">
                     <div class="ver-applicant">${doc.applicant}</div>
@@ -185,7 +185,7 @@ function renderVerificationQueue(filter = 'all') {
                 ${statusMap[doc.status] || ''}
                 <button class="btn-ver-review"
                         onclick="openVerificationDetail('${doc.id}')">
-                    Review →
+                    Review 
                 </button>
             </div>
         </div>
@@ -219,7 +219,7 @@ function openVerificationDetail(id) {
             <button onclick="closeVerDetail()"
                     style="background:var(--secondary-bg);border:1px solid var(--border-color);
                            color:var(--text-gray);padding:0.4rem 0.75rem;border-radius:8px;
-                           cursor:pointer;font-family:inherit;">✕</button>
+                           cursor:pointer;font-family:inherit;"></button>
         </div>
 
         <div class="ver-detail-grid">
@@ -245,7 +245,7 @@ function openVerificationDetail(id) {
         <div class="ver-docs-list">
             ${currentVerDoc.docs.map((doc, i) => `
                 <div class="ver-doc-item">
-                    <span class="ver-doc-icon">📄</span>
+                    
                     <span class="ver-doc-name">${doc}</span>
                     <button onclick="previewDoc(${i})"
                             style="padding:0.3rem 0.6rem;border-radius:6px;
@@ -259,11 +259,10 @@ function openVerificationDetail(id) {
         </div>
 
         <div class="ver-action-row">
-            <button class="btn-ver-approve" onclick="approveDocument('${currentVerDoc.id}')">
-                ✅ Approve & Forward
+            <button class="btn-ver-approve" onclick="approveDocument('${currentVerDoc.id}')">Approve & Forward
             </button>
             <button class="btn-ver-reject" onclick="openRejectModal('${currentVerDoc.id}')">
-                ✕ Reject
+                 Reject
             </button>
         </div>
     `;

@@ -1,69 +1,96 @@
 /* ============================================================
    B.H.U.M.I — Common / Shared CSS
-   Imported by ALL pages. Defines base reset, typography,
-   layout primitives, shared components, animations.
+   Color System: MOONSTONE
+   SLATE GREY  : #6B737D
+   FROST SILVER: #D9E0E7
+   DARK CANVAS : #22272E / #1D2228
    ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Space+Mono:wght@400;700&display=swap');
 
 /* ── CSS Variables ─────────────────────────────────────────── */
 :root {
-    --primary-lavender:   #9FA5D5;
-    --light-lavender:     #B8BFEA;
-    --soft-lavender:      #C9CEF0;
-    --dark-lavender:      #8189C1;
-    --darker-lavender:    #6B72A8;
+    /* Exact Moonstone Palette Specifications */
+    --color-moon-dark:    #22272E;
+    --color-moon-canvas:  #181C21;
+    --color-moon-slate:   #6B737D;
+    --color-moon-frost:   #D9E0E7;
 
-    --accent-peach:       #FED7B8;
-    --light-peach:        #FFE5D0;
-    --soft-peach:         #FFF0E0;
-    --dark-peach:         #F5C99E;
+    /* Tonal Variations */
+    --color-slate-dark:   #343B45;
+    --color-slate-light:  #8A94A0;
+    --color-card-bg:      rgba(43, 49, 58, 0.82);
+    --color-card-hover:   rgba(54, 62, 73, 0.92);
 
-    --primary-bg:         #0D0E1A;
-    --secondary-bg:       #1A1C2E;
-    --card-bg:            #252841;
-    --hover-bg:           #2F3354;
-    --border-color:       #3D4166;
-    --border-light:       #4A4E7A;
+    --color-moon-glow:    rgba(107, 115, 125, 0.35);
+
+    --color-offwhite-soft:#ECEFF3;
+    --color-offwhite-muted:#9BA4AF;
+    --color-offwhite-dark:#68727E;
+
+    /* Primary System Mappings */
+    --primary-bg:         #181C21;
+    --secondary-bg:       #22272E;
+    --card-bg:            rgba(43, 49, 58, 0.82);
+    --hover-bg:           rgba(54, 62, 73, 0.92);
+    --border-color:       rgba(217, 224, 231, 0.18);
+    --border-light:       rgba(107, 115, 125, 0.3);
 
     --text-white:         #FFFFFF;
-    --text-light:         #F0F2FF;
-    --text-gray:          #B8BFEA;
-    --text-muted:         #8189C1;
-    --text-dark:          #6B72A8;
+    --text-light:         #D9E0E7;
+    --text-gray:          #9BA4AF;
+    --text-muted:         #68727E;
+    --text-dark:          #181C21;
 
     --success-green:      #10B981;
     --warning-yellow:     #F59E0B;
     --info-blue:          #3B82F6;
     --error-red:          #EF4444;
-    --purple:             #8B5CF6;
 
-    --gradient-primary:   linear-gradient(135deg, #9FA5D5 0%, #FED7B8 100%);
-    --gradient-secondary: linear-gradient(135deg, #B8BFEA 0%, #FFE5D0 100%);
-    --gradient-card:      linear-gradient(135deg, rgba(159,165,213,0.1) 0%, rgba(254,215,184,0.05) 100%);
-    --gradient-hover:     linear-gradient(135deg, rgba(159,165,213,0.2) 0%, rgba(254,215,184,0.1) 100%);
-    --gradient-bg:        linear-gradient(135deg, #0D0E1A 0%, #1A1C2E 50%, #252841 100%);
+    /* Legacy Alias Support */
+    --primary-lavender:   #6B737D;
+    --light-lavender:     #D9E0E7;
+    --soft-lavender:      #ECEFF3;
+    --dark-lavender:      #343B45;
+    --darker-lavender:    #22272E;
 
-    --sidebar-width:      260px;
-    --sidebar-collapsed:  72px;
-    --topbar-height:      72px;
+    --accent-peach:       #D9E0E7;
+    --light-peach:        #ECEFF3;
+    --soft-peach:         #9BA4AF;
+    --dark-peach:         #6B737D;
 
-    --radius-sm:          8px;
+    /* Gradients */
+    --gradient-primary:   linear-gradient(135deg, #6B737D 0%, #D9E0E7 100%);
+    --gradient-secondary: linear-gradient(135deg, #D9E0E7 0%, #6B737D 100%);
+    --gradient-card:      linear-gradient(135deg, rgba(107, 115, 125, 0.25) 0%, rgba(34, 39, 46, 0.95) 100%);
+    --gradient-hover:     linear-gradient(135deg, rgba(217, 224, 231, 0.25) 0%, rgba(107, 115, 125, 0.35) 100%);
+    --gradient-bg:        radial-gradient(circle at 85% 20%, rgba(107, 115, 125, 0.28) 0%, #181C21 70%);
+
+    --glass-blur: blur(20px) saturate(180%);
+    --glass-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.55), 0 0 28px 0 rgba(107, 115, 125, 0.2);
+
+    --sidebar-width:      270px;
+    --sidebar-collapsed:  76px;
+    --topbar-height:      76px;
+
+    --radius-sm:          6px;
     --radius-md:          12px;
-    --radius-lg:          16px;
-    --radius-xl:          20px;
+    --radius-lg:          18px;
+    --radius-xl:          24px;
     --radius-full:        9999px;
 
-    --shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.25);
-    --shadow-md:   0 4px 16px rgba(0, 0, 0, 0.35);
-    --shadow-lg:   0 8px 32px rgba(0, 0, 0, 0.45);
-    --shadow-glow: 0 0 24px rgba(159, 165, 213, 0.15);
+    --shadow-sm:   0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-md:   0 8px 24px rgba(0, 0, 0, 0.6);
+    --shadow-lg:   0 16px 48px rgba(0, 0, 0, 0.8);
+    --shadow-glow: 0 0 32px var(--color-moon-glow);
 
-    --transition-fast:   0.15s ease;
-    --transition-base:   0.25s ease;
-    --transition-slow:   0.4s ease;
+    --transition-fast:   0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-base:   0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-slow:   0.5s cubic-bezier(0.16, 1, 0.3, 1);
 
-    --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    --font-serif: 'Georgia', 'Times New Roman', serif;
-    --font-mono:  'Courier New', Courier, monospace;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-mono:  'Space Mono', monospace;
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -553,7 +580,7 @@ p {
     background: var(--gradient-card);
     color: var(--primary-lavender);
     font-weight: 700;
-    border: 1px solid rgba(159, 165, 213, 0.2);
+    border: 1px solid rgba(217, 224, 231, 0.2);
 }
 
 .nav-item.active::before {
@@ -649,7 +676,7 @@ p {
     background: var(--hover-bg);
     border-color: var(--border-light);
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(159, 165, 213, 0.15);
+    box-shadow: 0 12px 40px rgba(217, 224, 231, 0.15);
 }
 
 .card-accent {
@@ -679,8 +706,137 @@ p {
 }
 
 /* ════════════════════════════════════════════════════════════
-   BUTTONS
+   BUTTONS & UNIVERSAL OPEN/CLOSE MICRO-ANIMATIONS
    ════════════════════════════════════════════════════════════ */
+
+button,
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-ghost,
+.btn-peach,
+.btn-danger,
+.btn-success,
+.btn-login,
+.btn-register,
+.service-btn,
+.logout-btn,
+.action-btn,
+.view-btn,
+.table-btn,
+.view-all-btn,
+.btn-reset,
+.btn-submit,
+.action-btn-primary,
+.action-btn-secondary,
+.view-details-btn,
+.btn-dispute,
+.btn-dispute-view,
+.btn-dispute-resolve,
+.btn-dispute-escalate,
+.modal-close-btn,
+.modal-close,
+.btn-export,
+.quick-btn,
+.task-btn,
+.verify-blockchain-btn,
+.view-doc-btn,
+.approve-btn,
+.reject-btn,
+.hold-btn,
+.verify-otp-btn,
+.resend-otp-btn,
+.nav-item,
+.tab-btn,
+.filter-btn,
+.chip,
+.sidebar-toggle,
+.mobile-menu-btn,
+input[type="button"],
+input[type="submit"],
+[role="button"] {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    backface-visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.25s ease,
+                border-color 0.25s ease,
+                color 0.25s ease,
+                opacity 0.2s ease;
+}
+
+/* Hover Elevation & Lift */
+button:hover:not(:disabled),
+.btn:hover:not(:disabled),
+.nav-item:hover,
+.quick-btn:hover,
+.action-btn:hover,
+.tab-btn:hover,
+.filter-btn:hover,
+.chip:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover,
+[role="button"]:hover {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Active Press-Down Interaction (Opening state feel) */
+button:active:not(:disabled),
+button.btn-pressing:not(:disabled),
+.btn:active:not(:disabled),
+.btn.btn-pressing:not(:disabled),
+.nav-item:active,
+.quick-btn:active,
+.action-btn:active,
+.tab-btn:active,
+.filter-btn:active,
+input[type="button"]:active,
+input[type="submit"]:active,
+[role="button"]:active {
+    transform: translateY(1px) scale(0.95) !important;
+    transition: transform 0.08s cubic-bezier(0, 0, 0.2, 1) !important;
+}
+
+/* Elastic Spring Release (Closing interaction state feel) */
+.btn-releasing {
+    animation: buttonSpringRelease 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards !important;
+}
+
+@keyframes buttonSpringRelease {
+    0% {
+        transform: translateY(1px) scale(0.95);
+    }
+    45% {
+        transform: translateY(-3px) scale(1.03);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Position-aware Click Ripple Wave Overlay */
+.bh-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(217, 224, 231, 0.3);
+    pointer-events: none;
+    transform: scale(0);
+    animation: bhRippleWave 0.55s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    z-index: 10;
+}
+
+@keyframes bhRippleWave {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(3.5);
+        opacity: 0;
+    }
+}
 
 .btn {
     display: inline-flex;
@@ -693,7 +849,6 @@ p {
     font-weight: 600;
     cursor: pointer;
     border: 1px solid transparent;
-    transition: all var(--transition-base);
     font-family: inherit;
     letter-spacing: 0.02em;
     white-space: nowrap;
@@ -721,13 +876,13 @@ p {
 
 /* Secondary */
 .btn-secondary {
-    background: rgba(159, 165, 213, 0.1);
+    background: rgba(217, 224, 231, 0.1);
     color: var(--primary-lavender);
-    border-color: rgba(159, 165, 213, 0.25);
+    border-color: rgba(217, 224, 231, 0.25);
 }
 
 .btn-secondary:hover {
-    background: rgba(159, 165, 213, 0.2);
+    background: rgba(217, 224, 231, 0.2);
     border-color: var(--primary-lavender);
     transform: translateY(-1px);
 }
@@ -747,13 +902,13 @@ p {
 
 /* Peach accent */
 .btn-peach {
-    background: rgba(254, 215, 184, 0.1);
+    background: rgba(107, 115, 125, 0.1);
     color: var(--accent-peach);
-    border-color: rgba(254, 215, 184, 0.25);
+    border-color: rgba(107, 115, 125, 0.25);
 }
 
 .btn-peach:hover {
-    background: rgba(254, 215, 184, 0.2);
+    background: rgba(107, 115, 125, 0.2);
     border-color: var(--accent-peach);
     transform: translateY(-1px);
 }
@@ -869,7 +1024,7 @@ p {
 
 .form-control:focus {
     border-color: var(--primary-lavender);
-    box-shadow: 0 0 0 3px rgba(159, 165, 213, 0.12);
+    box-shadow: 0 0 0 3px rgba(217, 224, 231, 0.12);
 }
 
 .form-control:disabled {
@@ -1001,15 +1156,15 @@ textarea.form-control {
 }
 
 .badge-lavender {
-    background: rgba(159, 165, 213, 0.12);
+    background: rgba(217, 224, 231, 0.12);
     color: var(--primary-lavender);
-    border: 1px solid rgba(159, 165, 213, 0.25);
+    border: 1px solid rgba(217, 224, 231, 0.25);
 }
 
 .badge-peach {
-    background: rgba(254, 215, 184, 0.12);
+    background: rgba(107, 115, 125, 0.12);
     color: var(--accent-peach);
-    border: 1px solid rgba(254, 215, 184, 0.25);
+    border: 1px solid rgba(107, 115, 125, 0.25);
 }
 
 .badge-success {
@@ -1151,12 +1306,18 @@ textarea.form-control {
     padding: 1rem;
     opacity: 0;
     pointer-events: none;
-    transition: opacity var(--transition-base);
+    transition: opacity 0.25s ease-out;
 }
 
 .modal-overlay.active {
     opacity: 1;
     pointer-events: all;
+    animation: modalOverlayFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-overlay.closing {
+    pointer-events: none !important;
+    animation: modalOverlayFadeOut 0.22s cubic-bezier(0.4, 0, 0.6, 1) forwards !important;
 }
 
 .modal {
@@ -1164,19 +1325,67 @@ textarea.form-control {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--border-light);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 32px rgba(159, 165, 213, 0.15);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 32px rgba(217, 224, 231, 0.15);
     border-radius: var(--radius-xl);
     width: 100%;
     max-width: 560px;
     max-height: 90vh;
     overflow-y: auto;
     padding: 2rem;
-    transform: translateY(20px);
-    transition: transform var(--transition-base);
+    transform: scale(0.92) translateY(20px);
 }
 
-.modal-overlay.active .modal {
-    transform: translateY(0);
+.modal-overlay.active .modal,
+.modal-overlay.active .dispute-modal {
+    animation: modalPopOpen 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.modal-overlay.closing .modal,
+.modal-overlay.closing .dispute-modal {
+    animation: modalPopClose 0.22s cubic-bezier(0.4, 0, 0.6, 1) forwards !important;
+}
+
+@keyframes modalOverlayFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes modalOverlayFadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes modalPopOpen {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(24px);
+    }
+    70% {
+        transform: scale(1.02) translateY(-2px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes modalPopClose {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.92) translateY(18px);
+    }
 }
 
 .modal-sm { max-width: 400px; }
@@ -1290,8 +1499,8 @@ textarea.form-control {
 }
 
 .alert-info {
-    background: rgba(159, 165, 213, 0.1);
-    border-color: rgba(159, 165, 213, 0.25);
+    background: rgba(217, 224, 231, 0.1);
+    border-color: rgba(217, 224, 231, 0.25);
     color: var(--light-lavender);
 }
 
@@ -1507,7 +1716,7 @@ textarea.form-control {
 
 .step-item.active .step-dot {
     border-color: var(--primary-lavender);
-    background: rgba(159, 165, 213, 0.15);
+    background: rgba(217, 224, 231, 0.15);
     color: var(--primary-lavender);
 }
 
@@ -1841,8 +2050,8 @@ textarea.form-control {
     backdrop-filter: blur(16px) saturate(160%) !important;
     -webkit-backdrop-filter: blur(16px) saturate(160%) !important;
     background: rgba(37, 40, 65, 0.55) !important;
-    border: 1px solid rgba(159, 165, 213, 0.2) !important;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 24px 0 rgba(159, 165, 213, 0.1) !important;
+    border: 1px solid rgba(217, 224, 231, 0.2) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 24px 0 rgba(217, 224, 231, 0.1) !important;
 }
 
 .card:hover,
@@ -1852,6 +2061,6 @@ textarea.form-control {
 .stat-summary-card:hover,
 .verification-item:hover {
     background: rgba(47, 51, 84, 0.72) !important;
-    border-color: rgba(254, 215, 184, 0.35) !important;
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), 0 0 32px 0 rgba(159, 165, 213, 0.2) !important;
+    border-color: rgba(107, 115, 125, 0.35) !important;
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), 0 0 32px 0 rgba(217, 224, 231, 0.2) !important;
 }

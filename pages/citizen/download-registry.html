@@ -11,41 +11,41 @@
     <aside class="sidebar">
         <div class="sidebar-header">
             <div class="logo">
-                <div class="logo-icon"></div>
+                
                 <span class="logo-text">B.H.U.M.I</span>
             </div>
         </div>
         
         <nav class="sidebar-nav">
             <a href="dashboard.html" class="nav-item">
-                <span class="icon">📊</span>
+                
                 <span>Dashboard</span>
             </a>
             <a href="verify-land.html" class="nav-item">
-                <span class="icon">🔍</span>
+                
                 <span>Verify Land</span>
             </a>
             <a href="book-appointment.html" class="nav-item">
-                <span class="icon">📅</span>
+                
                 <span>Book Appointment</span>
             </a>
             <a href="download-registry.html" class="nav-item active">
-                <span class="icon">📄</span>
+                
                 <span>E-Registry</span>
             </a>
             <a href="#" class="nav-item">
-                <span class="icon">📜</span>
+                
                 <span>My Records</span>
             </a>
             <a href="#" class="nav-item">
-                <span class="icon">⚙️</span>
+                
                 <span>Settings</span>
             </a>
         </nav>
 
         <div class="sidebar-footer">
             <a href="../../index.html" class="logout-btn">
-                <span class="icon">🚪</span>
+                
                 <span>Logout</span>
             </a>
         </div>
@@ -59,9 +59,7 @@
                 <p>Access your digital land registry documents</p>
             </div>
             <div class="header-right">
-                <div class="notification-icon">
-                    <span class="icon">🔔</span>
-                    <span class="badge">3</span>
+                <span class="badge">3</span>
                 </div>
                 <div class="user-profile">
                     <div class="avatar">RK</div>
@@ -94,8 +92,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="search-btn">
-                                🔍 Search
+                            <button type="submit" class="search-btn">Search
                             </button>
                         </div>
                     </div>
@@ -110,7 +107,7 @@
             <div class="documents-grid">
                 <div class="document-card">
                     <div class="document-header">
-                        <div class="doc-icon">📄</div>
+                        
                         <span class="doc-status verified">Verified</span>
                     </div>
                     <div class="document-body">
@@ -125,17 +122,16 @@
                         </div>
                     </div>
                     <div class="document-footer">
-                        <button class="download-btn" onclick="downloadPDF('123/1')">
-                            📥 Download PDF
+                        <button class="download-btn" onclick="downloadPDF('123/1')">Download PDF
                         </button>
-                        <button class="view-btn-doc">👁️ Preview</button>
-                        <button class="share-btn">📤 Share</button>
+                        <button class="view-btn-doc">Preview</button>
+                        <button class="share-btn"> Share</button>
                     </div>
                 </div>
 
                 <div class="document-card">
                     <div class="document-header">
-                        <div class="doc-icon">📄</div>
+                        
                         <span class="doc-status verified">Verified</span>
                     </div>
                     <div class="document-body">
@@ -150,17 +146,16 @@
                         </div>
                     </div>
                     <div class="document-footer">
-                        <button class="download-btn" onclick="downloadPDF('456/2')">
-                            📥 Download PDF
+                        <button class="download-btn" onclick="downloadPDF('456/2')">Download PDF
                         </button>
-                        <button class="view-btn-doc">👁️ Preview</button>
-                        <button class="share-btn">📤 Share</button>
+                        <button class="view-btn-doc">Preview</button>
+                        <button class="share-btn"> Share</button>
                     </div>
                 </div>
 
                 <div class="document-card pending-card">
                     <div class="document-header">
-                        <div class="doc-icon">⏳</div>
+                        
                         <span class="doc-status pending">Processing</span>
                     </div>
                     <div class="document-body">
@@ -173,10 +168,9 @@
                         </div>
                     </div>
                     <div class="document-footer">
-                        <button class="download-btn" disabled>
-                            📥 Download PDF
+                        <button class="download-btn" disabled>Download PDF
                         </button>
-                        <button class="track-btn">📍 Track Status</button>
+                        <button class="track-btn">Track Status</button>
                     </div>
                 </div>
             </div>
@@ -220,17 +214,17 @@
         <section class="info-section">
             <div class="info-cards-grid">
                 <div class="info-card-small">
-                    <div class="info-icon-small">📋</div>
+                    
                     <h4>Valid Documents</h4>
                     <p>All downloaded documents are digitally signed and legally valid</p>
                 </div>
                 <div class="info-card-small">
-                    <div class="info-icon-small">🔒</div>
+                    
                     <h4>Secure Storage</h4>
                     <p>Documents are stored securely on blockchain for authenticity</p>
                 </div>
                 <div class="info-card-small">
-                    <div class="info-icon-small">⚡</div>
+                    
                     <h4>Instant Access</h4>
                     <p>Download your documents anytime, anywhere instantly</p>
                 </div>
@@ -273,7 +267,7 @@
         // Track Status
         document.querySelectorAll('.track-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                alert('Registry Status:\n\nStage 1: ✓ Application Submitted\nStage 2: ✓ Documents Verified\nStage 3: ⏳ In Process\nStage 4: ⏸️ Pending');
+                alert('Registry Status:\n\nStage 1:  Application Submitted\nStage 2:  Documents Verified\nStage 3:  In Process\nStage 4: ⏸ Pending');
             });
         });
 

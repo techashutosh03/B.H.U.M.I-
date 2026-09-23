@@ -1,0 +1,21 @@
+{
+  "name": "b.h.u.m.i",
+  "version": "1.0.0",
+  "description": "B.H.U.M.I - Digital Land Registry System",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server --port=3000",
+    "dev": "npx live-server --port=3000",
+    "serve": "npx serve -l 3000"
+  },
+  "keywords": [
+    "blockchain",
+    "land-registry",
+    "govtech"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

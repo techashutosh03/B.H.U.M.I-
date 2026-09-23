@@ -19,13 +19,13 @@
     <div class="modal modal-sm animate-scale-in">
         <div class="modal-header">
             <span class="modal-title" id="confirmModalTitle">Confirm Action</span>
-            <button class="modal-close" onclick="closeModal('confirmModal')">✕</button>
+            <button class="modal-close" onclick="closeModal('confirmModal')"></button>
         </div>
 
         <div class="modal-body">
             <div style="text-align:center; margin-bottom: 1.25rem;">
                 <div id="confirmModalIcon"
-                     style="font-size:2.5rem; margin-bottom:0.75rem;">⚠️</div>
+                     style="font-size:2.5rem; margin-bottom:0.75rem;"></div>
                 <p id="confirmModalMessage"
                    style="font-size:0.9rem; color:#B8BFEA; line-height:1.6;">
                     Are you sure you want to proceed?
@@ -57,13 +57,13 @@
     <div class="modal modal-sm animate-scale-in">
         <div class="modal-header">
             <span class="modal-title" id="rejectModalTitle">Reject Document</span>
-            <button class="modal-close" onclick="closeModal('rejectModal')">✕</button>
+            <button class="modal-close" onclick="closeModal('rejectModal')"></button>
         </div>
 
         <div class="modal-body">
 
             <div class="alert alert-danger" style="margin-bottom:1.25rem;">
-                <span class="alert-icon">⚠️</span>
+                
                 <div class="alert-content">
                     <div class="alert-title">This action will notify the applicant.</div>
                     Please provide a clear rejection reason below.
@@ -114,7 +114,7 @@
             </button>
             <button class="btn btn-danger btn-sm"
                     onclick="submitRejectModal()">
-                ✕ Reject Document
+                 Reject Document
             </button>
         </div>
     </div>
@@ -129,16 +129,16 @@
     <div class="modal animate-scale-in">
         <div class="modal-header">
             <span class="modal-title" id="blockchainModalTitle">
-                🔗 Blockchain Record
+                 Blockchain Record
             </span>
-            <button class="modal-close" onclick="closeModal('blockchainModal')">✕</button>
+            <button class="modal-close" onclick="closeModal('blockchainModal')"></button>
         </div>
 
         <div class="modal-body">
 
             <!-- Status banner -->
             <div class="alert alert-success" style="margin-bottom:1.5rem;">
-                <span class="alert-icon">✅</span>
+                
                 <div class="alert-content">
                     <div class="alert-title">Transaction Confirmed</div>
                     This registry entry has been permanently recorded on the blockchain.
@@ -189,7 +189,7 @@
                     <div id="bcConfirmations"
                          style="font-size:0.9rem;font-weight:700;
                                 color:#10B981;">
-                        24 / 24 ✓
+                        24 / 24 
                     </div>
                 </div>
 
@@ -201,7 +201,7 @@
                             text-transform:uppercase;letter-spacing:0.07em;
                             margin-bottom:0.5rem;">Transaction Hash</div>
                 <div class="blockchain-record">
-                    <span class="chain-icon">🔗</span>
+                    
                     <span class="chain-hash" id="bcTxHash">
                         0xabc123…loading
                     </span>
@@ -216,7 +216,7 @@
                             text-transform:uppercase;letter-spacing:0.07em;
                             margin-bottom:0.5rem;">Smart Contract Address</div>
                 <div class="blockchain-record">
-                    <span class="chain-icon">📄</span>
+                    
                     <span class="chain-hash" id="bcContractAddr">
                         0xB_H_U_M_I_Registry_Contract_v2_Mainnet
                     </span>
@@ -246,14 +246,14 @@
      aria-labelledby="otpModalTitle">
     <div class="modal modal-sm animate-scale-in">
         <div class="modal-header">
-            <span class="modal-title" id="otpModalTitle">🔐 Verify OTP</span>
-            <button class="modal-close" onclick="closeModal('otpModal')">✕</button>
+            <span class="modal-title" id="otpModalTitle"> Verify OTP</span>
+            <button class="modal-close" onclick="closeModal('otpModal')"></button>
         </div>
 
         <div class="modal-body">
 
             <div style="text-align:center; margin-bottom:1.5rem;">
-                <div style="font-size:2.5rem; margin-bottom:0.6rem;">📱</div>
+                <div style="font-size:2.5rem; margin-bottom:0.6rem;"></div>
                 <p style="font-size:0.85rem; color:#B8BFEA; line-height:1.6;">
                     A 6-digit OTP has been sent to the mobile number
                     linked with your Aadhaar.
@@ -313,19 +313,12 @@
     <div class="modal modal-sm animate-scale-in">
         <div class="modal-header" style="border-bottom:none; padding-bottom:0;">
             <span></span>
-            <button class="modal-close" onclick="closeModal('successModal')">✕</button>
+            <button class="modal-close" onclick="closeModal('successModal')"></button>
         </div>
 
         <div class="modal-body" style="text-align:center; padding-top:0;">
 
-            <!-- Animated checkmark -->
-            <div class="success-check-wrap">
-                <svg class="success-checkmark" viewBox="0 0 52 52">
-                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                    <path class="checkmark-tick" fill="none"
-                          d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                </svg>
-            </div>
+
 
             <h2 id="successModalTitle"
                 style="font-size:1.3rem;font-weight:800;color:#F0F2FF;
@@ -366,10 +359,10 @@
     <div class="modal animate-scale-in">
         <div class="modal-header">
             <span class="modal-title" id="appointmentModalTitle">
-                📅 Appointment Details
+                 Appointment Details
             </span>
             <button class="modal-close"
-                    onclick="closeModal('appointmentModal')">✕</button>
+                    onclick="closeModal('appointmentModal')"></button>
         </div>
 
         <div class="modal-body" id="appointmentModalBody">
@@ -507,25 +500,29 @@
 <script>
 /* ── Modal open/close ─────────────────────────────── */
 function openModal(id) {
-    const overlay = document.getElementById(id);
+    const overlay = typeof id === 'string' ? document.getElementById(id) : id;
     if (overlay) {
+        overlay.classList.remove('closing');
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 }
 
 function closeModal(id) {
-    const overlay = document.getElementById(id);
-    if (overlay) {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
+    const overlay = typeof id === 'string' ? document.getElementById(id) : id;
+    if (overlay && overlay.classList.contains('active') && !overlay.classList.contains('closing')) {
+        overlay.classList.add('closing');
+        setTimeout(() => {
+            overlay.classList.remove('active', 'closing');
+            document.body.style.overflow = '';
+        }, 220);
     }
 }
 
 // Close on backdrop click
 document.querySelectorAll('.modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', e => {
-        if (e.target === overlay) closeModal(overlay.id);
+        if (e.target === overlay) closeModal(overlay);
     });
 });
 
@@ -533,7 +530,7 @@ document.querySelectorAll('.modal-overlay').forEach(overlay => {
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
         document.querySelectorAll('.modal-overlay.active').forEach(m => {
-            closeModal(m.id);
+            closeModal(m);
         });
     }
 });
@@ -546,7 +543,7 @@ function showConfirm(message, onOk, options = {}) {
     document.getElementById('confirmModalMessage').textContent =
         message || 'Are you sure you want to proceed?';
     document.getElementById('confirmModalIcon').textContent =
-        options.icon || '⚠️';
+        options.icon || '';
     document.getElementById('confirmModalTitle').textContent =
         options.title || 'Confirm Action';
 
@@ -833,7 +830,7 @@ function showAppointmentModal(appointment) {
         </div>
 
         <div class="alert alert-info">
-            <span class="alert-icon">ℹ️</span>
+            
             <div class="alert-content">
                 <div class="alert-title">Documents Required</div>
                 Please carry original Aadhaar card, property documents,

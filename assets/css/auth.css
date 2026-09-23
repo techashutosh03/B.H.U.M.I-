@@ -1,4 +1,9 @@
-/* Auth Pages - Lavender & Peach Theme */
+/* ===== B.H.U.M.I - MOONSTONE SYSTEM =====
+   Palette:
+   SLATE GREY  : #6B737D
+   FROST SILVER: #D9E0E7
+   DARK CANVAS : #1D2228 / #22272E
+   ======================================= */
 
 * {
     margin: 0;
@@ -7,22 +12,30 @@
 }
 
 :root {
-    --primary-lavender: #9FA5D5;
-    --light-lavender: #B8BFEA;
-    --accent-peach: #FED7B8;
-    --light-peach: #FFE5D0;
-    --primary-bg: #0D0E1A;
-    --secondary-bg: #1A1C2E;
-    --card-bg: #252841;
-    --border-color: #3D4166;
-    --text-white: #FFFFFF;
-    --text-gray: #B8BFEA;
-    --gradient-primary: linear-gradient(135deg, #9FA5D5 0%, #FED7B8 100%);
+    --color-moon-dark: #22272E;
+    --color-moon-slate: #6B737D;
+    --color-moon-frost: #D9E0E7;
+
+    --primary-bg: #1D2228;
+    --secondary-bg: #22272E;
+    --card-bg: rgba(43, 49, 58, 0.85);
+    --border-color: rgba(217, 224, 231, 0.2);
+
+    --text-white: #D9E0E7;
+    --text-gray: #9BA4AF;
+    --text-muted: #68727E;
+
+    --gradient-primary: linear-gradient(135deg, #6B737D 0%, #D9E0E7 100%);
+
+    --primary-lavender: #6B737D;
+    --light-lavender: #D9E0E7;
+    --accent-peach: #D9E0E7;
+    --light-peach: #ECEFF3;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at 85% 15%, rgba(107, 115, 125, 0.25) 0%, #1D2228 70%);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -151,10 +164,10 @@ body {
     background: rgba(37, 40, 65, 0.55);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(159, 165, 213, 0.25);
+    border: 1px solid rgba(217, 224, 231, 0.25);
     border-radius: 24px;
     padding: 3rem;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(159, 165, 213, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(217, 224, 231, 0.1);
 }
 
 .auth-header {
@@ -212,7 +225,7 @@ body {
 .form-group select:focus {
     outline: none;
     border-color: var(--primary-lavender);
-    box-shadow: 0 0 0 4px rgba(159, 165, 213, 0.1);
+    box-shadow: 0 0 0 4px rgba(217, 224, 231, 0.1);
 }
 
 .password-input {
@@ -277,7 +290,7 @@ body {
 
 .auth-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(159, 165, 213, 0.4);
+    box-shadow: 0 10px 30px rgba(217, 224, 231, 0.4);
 }
 
 .auth-divider {

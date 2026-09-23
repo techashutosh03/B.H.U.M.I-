@@ -714,10 +714,10 @@ function renderDisputeCards() {
     if (empty) empty.style.display = 'none';
 
     const statusIconMap = {
-        open:      { cls:'',         icon:'⚠️' },
-        review:    { cls:'review',   icon:'🔍' },
-        resolved:  { cls:'resolved', icon:'✅' },
-        escalated: { cls:'',         icon:'🚨' },
+        open:      { cls:'',         icon:'' },
+        review:    { cls:'review',   icon:'' },
+        resolved:  { cls:'resolved', icon:'' },
+        escalated: { cls:'',         icon:'' },
     };
 
     const statusBadgeMap = {
@@ -728,12 +728,12 @@ function renderDisputeCards() {
     };
 
     list.innerHTML = page.map(d => {
-        const si = statusIconMap[d.status] || { cls:'', icon:'📁' };
+        const si = statusIconMap[d.status] || { cls:'', icon:'' };
         return `
         <div class="dispute-card" onclick="openDisputeModal('${d.id}')">
             <div class="dispute-card-header">
                 <div class="dispute-id-wrap">
-                    <div class="dispute-icon ${si.cls}">${si.icon}</div>
+                    
                     <div>
                         <div class="dispute-title">${d.title}</div>
                         <div class="dispute-id-text">${d.id}</div>
@@ -744,19 +744,19 @@ function renderDisputeCards() {
 
             <div class="dispute-meta">
                 <div class="dispute-meta-item">
-                    <span>📍</span>
+                    <span></span>
                     <span>${d.tehsil}, ${d.district}</span>
                 </div>
                 <div class="dispute-meta-item">
-                    <span>🗓</span>
+                    <span></span>
                     <span>Filed: ${d.filedOn}</span>
                 </div>
                 <div class="dispute-meta-item">
-                    <span>👤</span>
+                    <span></span>
                     <span>${d.filedBy}</span>
                 </div>
                 <div class="dispute-meta-item">
-                    <span>📐</span>
+                    <span></span>
                     <span>${d.area}</span>
                 </div>
             </div>
@@ -858,10 +858,10 @@ function openDisputeModal(id) {
     const tlHtml = d.timeline.map(t => `
         <div class="timeline-item">
             <div class="timeline-dot ${t.type}">${
-                t.type === 'filed'    ? '📁'
-              : t.type === 'review'  ? '🔍'
-              : t.type === 'resolved'? '✅'
-              : '⏳'
+                t.type === 'filed'    ? ''
+              : t.type === 'review'  ? ''
+              : t.type === 'resolved'? ''
+              : ''
             }</div>
             <div class="timeline-content">
                 <div class="tl-date">${t.date}</div>
@@ -919,8 +919,14 @@ function openDisputeModal(id) {
 }
 
 function closeDisputeModal() {
-    document.getElementById('disputeModalOverlay').classList.remove('active');
-    document.body.style.overflow = '';
+    const overlay = document.getElementById('disputeModalOverlay');
+    if (overlay && overlay.classList.contains('active') && !overlay.classList.contains('closing')) {
+        overlay.classList.add('closing');
+        setTimeout(() => {
+            overlay.classList.remove('active', 'closing');
+            document.body.style.overflow = '';
+        }, 220);
+    }
 }
 
 // Close modal on overlay click

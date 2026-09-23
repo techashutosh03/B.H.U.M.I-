@@ -1,53 +1,71 @@
-/* B.H.U.M.I - Local Authority Desk Styles (Lavender & Peach Theme) */
+/* ===== B.H.U.M.I - MOONSTONE SYSTEM =====
+   Palette:
+   SLATE GREY  : #6B737D
+   FROST SILVER: #D9E0E7
+   DARK CANVAS : #1D2228 / #22272E
+   ======================================= */
 
 :root {
-    /* Primary Colors - Lavender Shades */
-    --primary-lavender: #9FA5D5;
-    --light-lavender: #B8BFEA;
-    --soft-lavender: #C9CEF0;
-    --dark-lavender: #8189C1;
-    --darker-lavender: #6B72A8;
-    
-    /* Accent Colors - Peach Shades */
-    --accent-peach: #FED7B8;
-    --light-peach: #FFE5D0;
-    --soft-peach: #FFF0E0;
-    --dark-peach: #F5C99E;
-    
-    /* Background Colors - Glassmorphism Tailored */
-    --primary-bg: #0D0E1A;
-    --secondary-bg: rgba(26, 28, 46, 0.72);
-    --card-bg: rgba(37, 40, 65, 0.55);
-    --hover-bg: rgba(47, 51, 84, 0.7);
-    
-    /* Border Colors - Translucent Glow */
-    --border-color: rgba(159, 165, 213, 0.2);
-    --border-light: rgba(254, 215, 184, 0.3);
-    
+    /* Core Palette Colors */
+    --color-moon-dark: #22272E;
+    --color-moon-slate: #6B737D;
+    --color-moon-frost: #D9E0E7;
+
+    --color-offwhite-muted: #9BA4AF;
+
+    /* Primary System Mappings */
+    --primary-bg: #1D2228;
+    --secondary-bg: #22272E;
+    --card-bg: rgba(43, 49, 58, 0.85);
+    --hover-bg: rgba(52, 59, 69, 0.9);
+
+    /* Border Colors */
+    --border-color: rgba(217, 224, 231, 0.2);
+    --border-light: rgba(107, 115, 125, 0.35);
+
     /* Text Colors */
-    --text-white: #FFFFFF;
-    --text-light: #F0F2FF;
-    --text-gray: #B8BFEA;
-    --text-muted: #8189C1;
-    --text-dark: #6B72A8;
-    
+    --text-white: #D9E0E7;
+    --text-light: #ECEFF3;
+    --text-gray: #9BA4AF;
+    --text-muted: #68727E;
+    --text-dark: #1D2228;
+
     /* Status Colors */
     --success-green: #10B981;
     --warning-yellow: #F59E0B;
     --info-blue: #3B82F6;
     --error-red: #EF4444;
-    --purple: #8B5CF6;
+
+    /* Backward-Compatibility Aliases */
+    --primary-lavender: #6B737D;
+    --light-lavender: #D9E0E7;
+    --soft-lavender: #ECEFF3;
+    --dark-lavender: #4F5761;
+    --darker-lavender: #22272E;
+
+    --accent-peach: #D9E0E7;
+    --light-peach: #ECEFF3;
+    --soft-peach: #9BA4AF;
+    --dark-peach: #6B737D;
+}
+    --darker-lavender: #141414;
+
+    --accent-peach: #F5F2ED;
+    --light-peach: #E6E2D8;
+    --soft-peach: #B5B0A6;
+    --dark-peach: #8B0D1A;
+}
     
     /* Gradient Colors */
-    --gradient-primary: linear-gradient(135deg, #9FA5D5 0%, #FED7B8 100%);
-    --gradient-secondary: linear-gradient(135deg, #B8BFEA 0%, #FFE5D0 100%);
-    --gradient-card: linear-gradient(135deg, rgba(159, 165, 213, 0.15) 0%, rgba(254, 215, 184, 0.08) 100%);
-    --gradient-hover: linear-gradient(135deg, rgba(159, 165, 213, 0.25) 0%, rgba(254, 215, 184, 0.15) 100%);
+    --gradient-primary: linear-gradient(135deg, #6B737D 0%, #D9E0E7 100%);
+    --gradient-secondary: linear-gradient(135deg, #D9E0E7 0%, #FFE5D0 100%);
+    --gradient-card: linear-gradient(135deg, rgba(217, 224, 231, 0.15) 0%, rgba(107, 115, 125, 0.08) 100%);
+    --gradient-hover: linear-gradient(135deg, rgba(217, 224, 231, 0.25) 0%, rgba(107, 115, 125, 0.15) 100%);
     --gradient-bg: linear-gradient(135deg, #0D0E1A 0%, #1A1C2E 50%, #252841 100%);
 
     /* Glassmorphism Design Tokens */
     --glass-blur: blur(16px) saturate(160%);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 24px 0 rgba(159, 165, 213, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 24px 0 rgba(217, 224, 231, 0.1);
 }
 
 * {
@@ -86,7 +104,7 @@ body {
 .sidebar-header {
     padding: 1.5rem;
     border-bottom: 1px solid var(--border-color);
-    background: rgba(159, 165, 213, 0.08);
+    background: rgba(217, 224, 231, 0.08);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
@@ -94,7 +112,7 @@ body {
 .authority-badge {
     margin-top: 0.8rem;
     padding: 0.4rem 0.8rem;
-    background: rgba(159, 165, 213, 0.15);
+    background: rgba(217, 224, 231, 0.15);
     border: 1px solid var(--primary-lavender);
     border-radius: 20px;
     font-size: 0.8rem;
@@ -128,7 +146,7 @@ body {
 .sidebar-footer {
     padding: 1.2rem;
     border-top: 2px solid var(--border-color);
-    background: rgba(159, 165, 213, 0.05);
+    background: rgba(217, 224, 231, 0.05);
 }
 
 .user-card {
@@ -162,7 +180,7 @@ body {
 .main-content {
     margin-left: 280px;
     flex: 1;
-    padding: 2rem;
+    padding: 1.25rem 1.75rem;
     background: var(--gradient-bg);
     min-height: 100vh;
 }
@@ -171,22 +189,22 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2.5rem;
-    padding: 1.5rem 2rem;
+    margin-bottom: 1.5rem;
+    padding: 1.2rem 1.5rem;
     background: var(--gradient-card);
-    border: 2px solid var(--border-color);
-    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
 }
 
 .quick-actions-header {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
 }
 
 .quick-btn {
-    padding: 0.6rem 1.2rem;
+    padding: 0.5rem 1rem;
     background: var(--card-bg);
-    border: 2px solid var(--border-color);
+    border: 1px solid var(--border-color);
     color: var(--text-white);
     border-radius: 8px;
     cursor: pointer;
@@ -201,9 +219,9 @@ body {
 /* Stats Overview */
 .stats-section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .stat-card {

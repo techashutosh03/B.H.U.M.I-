@@ -177,4 +177,4 @@ function updateStats() {
 // Auto-refresh stats every 30 seconds (optional)
 // setInterval(updateStats, 30000);
 
-console.log('Citizen Dashboard Loaded Successfully! 🎉');
+console.log('Citizen Dashboard Loaded Successfully! ');

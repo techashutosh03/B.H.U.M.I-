@@ -44,7 +44,7 @@
     background: var(--hover-bg);
     border-color: var(--border-light);
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(159, 165, 213, 0.1);
+    box-shadow: 0 8px 32px rgba(217, 224, 231, 0.1);
 }
 
 .monitoring-card .card-header {
@@ -340,13 +340,13 @@
 }
 
 .stat-summary-icon.lavender {
-    background: rgba(159, 165, 213, 0.15);
-    border: 1px solid rgba(159, 165, 213, 0.25);
+    background: rgba(217, 224, 231, 0.15);
+    border: 1px solid rgba(217, 224, 231, 0.25);
 }
 
 .stat-summary-icon.peach {
-    background: rgba(254, 215, 184, 0.15);
-    border: 1px solid rgba(254, 215, 184, 0.25);
+    background: rgba(107, 115, 125, 0.15);
+    border: 1px solid rgba(107, 115, 125, 0.25);
 }
 
 .stat-summary-icon.green {
@@ -478,7 +478,7 @@
     background: var(--hover-bg);
     border-color: var(--border-light);
     transform: translateX(4px);
-    box-shadow: 0 4px 24px rgba(159, 165, 213, 0.08);
+    box-shadow: 0 4px 24px rgba(217, 224, 231, 0.08);
 }
 
 .dispute-card-header {
@@ -585,13 +585,13 @@
 }
 
 .btn-dispute-view {
-    background: rgba(159, 165, 213, 0.12);
+    background: rgba(217, 224, 231, 0.12);
     color: var(--primary-lavender);
-    border-color: rgba(159, 165, 213, 0.25);
+    border-color: rgba(217, 224, 231, 0.25);
 }
 
 .btn-dispute-view:hover {
-    background: rgba(159, 165, 213, 0.22);
+    background: rgba(217, 224, 231, 0.22);
     border-color: var(--primary-lavender);
 }
 
@@ -795,7 +795,7 @@
 }
 
 .timeline-dot.pending {
-    background: rgba(159, 165, 213, 0.15);
+    background: rgba(217, 224, 231, 0.15);
     border: 2px solid var(--primary-lavender);
     color: var(--primary-lavender);
 }
@@ -821,8 +821,8 @@
 /* ── Government Sidebar Accent ── */
 .sidebar-role-badge.gov-badge {
     background: linear-gradient(135deg,
-        rgba(159, 165, 213, 0.2) 0%,
-        rgba(254, 215, 184, 0.1) 100%);
+        rgba(217, 224, 231, 0.2) 0%,
+        rgba(107, 115, 125, 0.1) 100%);
     border: 1px solid var(--primary-lavender);
     color: var(--primary-lavender);
     padding: 0.3rem 0.75rem;
@@ -842,8 +842,8 @@
     gap: 0.5rem;
     padding: 0.6rem 1.25rem;
     border-radius: 10px;
-    background: rgba(159, 165, 213, 0.1);
-    border: 1px solid rgba(159, 165, 213, 0.25);
+    background: rgba(217, 224, 231, 0.1);
+    border: 1px solid rgba(217, 224, 231, 0.25);
     color: var(--primary-lavender);
     font-size: 0.82rem;
     font-weight: 600;
@@ -854,7 +854,7 @@
 }
 
 .btn-export:hover {
-    background: rgba(159, 165, 213, 0.2);
+    background: rgba(217, 224, 231, 0.2);
     border-color: var(--primary-lavender);
     transform: translateY(-1px);
 }
@@ -907,10 +907,10 @@
     z-index: 2;
 }
 
-.heatmap-cell.level-1 { background: rgba(159, 165, 213, 0.15); }
-.heatmap-cell.level-2 { background: rgba(159, 165, 213, 0.3); }
-.heatmap-cell.level-3 { background: rgba(159, 165, 213, 0.5); }
-.heatmap-cell.level-4 { background: rgba(159, 165, 213, 0.7); }
+.heatmap-cell.level-1 { background: rgba(217, 224, 231, 0.15); }
+.heatmap-cell.level-2 { background: rgba(217, 224, 231, 0.3); }
+.heatmap-cell.level-3 { background: rgba(217, 224, 231, 0.5); }
+.heatmap-cell.level-4 { background: rgba(217, 224, 231, 0.7); }
 .heatmap-cell.level-5 { background: var(--primary-lavender); }
 
 /* Tooltip for heatmap */

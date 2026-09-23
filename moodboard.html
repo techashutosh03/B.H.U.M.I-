@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project CAESAR — Reversed Editorial Moodboard Presentation</title>
+    <link rel="stylesheet" href="assets/css/common.css">
+    <style>
+        body {
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        .header-bar {
+            width: 100%;
+            max-width: 1080px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .header-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .header-title span {
+            color: var(--color-burgundy);
+        }
+
+        .controls-group {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-action {
+            background: #1A1A1A;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+
+        .btn-action:hover {
+            background: var(--color-burgundy);
+            border-color: var(--color-burgundy);
+        }
+
+        /* 9:16 Canvas Container */
+        .story-canvas {
+            width: 480px;
+            height: 853px;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+            position: relative;
+        }
+
+        /* Top Header Navigation */
+        .story-header {
+            height: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            background: #FFFFFF;
+            border-bottom: 1px solid #EAEAEA;
+            font-size: 11px;
+            color: #000000;
+        }
+
+        .story-logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo-mark {
+            width: 14px;
+            height: 14px;
+            background: #000;
+            clip-path: polygon(0 0, 100% 0, 50% 100%);
+        }
+
+        .story-handle {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .story-project {
+            font-weight: 700;
+        }
+
+        /* 3-Panel Grid (REVERSED: WHITE -> BURGUNDY -> BLACK) */
+        .story-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .story-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 12px 12px 12px;
+            position: relative;
+        }
+
+        .story-panel-white {
+            background: #FFFFFF;
+            color: #000000;
+        }
+
+        .story-panel-burgundy {
+            background: #6D001A;
+            color: #FFFFFF;
+        }
+
+        .story-panel-black {
+            background: #000000;
+            color: #FFFFFF;
+        }
+
+        .story-vertical-title {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-family: 'Syne', sans-serif;
+            font-size: 46px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1;
+            align-self: center;
+            user-select: none;
+        }
+
+        .story-specs {
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            line-height: 1.5;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .story-panel-white .story-specs { color: rgba(0, 0, 0, 0.7); }
+        .story-panel-burgundy .story-specs { color: rgba(255, 255, 255, 0.85); }
+        .story-panel-black .story-specs { color: rgba(255, 255, 255, 0.7); }
+
+        .story-image {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        /* Footer */
+        .story-footer {
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            background: #FFFFFF;
+            border-top: 1px solid #EAEAEA;
+            font-family: 'Space Mono', monospace;
+            font-size: 8px;
+            color: #444;
+        }
+
+        .swipe-btn {
+            background: #000;
+            color: #fff;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-bar">
+        <div class="header-title">
+            PROJECT <span>CAESAR</span> — REVERSED EDITORIAL MOODBOARD
+        </div>
+        <div class="controls-group">
+            <a href="index.html" class="btn-action">← Launch Website</a>
+        </div>
+    </div>
+
+    <!-- 9:16 Story Canvas Preview (REVERSED) -->
+    <div class="story-canvas">
+        <div class="story-header">
+            <div class="story-logo">
+                <div class="logo-mark"></div>
+                <span>EXPOSURE</span>
+            </div>
+            <div class="story-handle">@logoexposure</div>
+            <div class="story-project">Project: CAESAR</div>
+        </div>
+
+        <div class="story-grid">
+            <!-- Left: White -->
+            <div class="story-panel story-panel-white">
+                <div class="story-vertical-title">WHITE</div>
+                <div>
+                    <div class="story-specs">
+                        HEX FFFFFF<br>
+                        RGB 255, 255, 255<br>
+                        CMYK 0, 0, 0, 0
+                    </div>
+                    <img src="assets/images/white_silk_fabric_1790192568476.jpg" alt="White Clarity" class="story-image">
+                </div>
+            </div>
+
+            <!-- Center: Burgundy -->
+            <div class="story-panel story-panel-burgundy">
+                <div class="story-vertical-title">BURGANDY</div>
+                <div>
+                    <div class="story-specs">
+                        HEX 6D001A<br>
+                        RGB 109, 0, 26<br>
+                        CMYK 33, 100, 67, 89
+                    </div>
+                    <img src="assets/images/burgundy_satin_fabric_1790192545436.jpg" alt="Burgundy Luxury" class="story-image">
+                </div>
+            </div>
+
+            <!-- Right: Black -->
+            <div class="story-panel story-panel-black">
+                <div class="story-vertical-title">BLACK</div>
+                <div>
+                    <div class="story-specs">
+                        HEX 000000<br>
+                        RGB 0, 0, 0<br>
+                        CMYK 75, 68, 67, 89
+                    </div>
+                    <img src="assets/images/vr_headset_portrait_1790192527540.jpg" alt="Black Authority" class="story-image">
+                </div>
+            </div>
+        </div>
+
+        <div class="story-footer">
+            <div>© Logoexposure, All Rights Reserved</div>
+            <div>www.logoexposure98@gmail.com</div>
+            <div class="swipe-btn">Swipe ●</div>
+        </div>
+    </div>
+
+</body>
+</html>
